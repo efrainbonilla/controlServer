@@ -1,0 +1,155 @@
+
+@import 'bs-callout';
+@import 'simple-sidebar.scss';
+
+body{
+	font-family: Roboto,sans-serif!important;
+	font-weight: 400;
+}
+.animate{
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+
+#footer {
+	padding: 40px 0 30px;
+	color: #6e798b;
+	border-top: 1px solid #dedede;
+	font-size: 12px;
+}
+
+.login-panel{
+	margin-bottom: 25%!important;
+
+	.checkbox{
+		width: 40%;
+	}
+}
+
+.img-responsive-center{
+	margin: 0 auto;
+}
+.drapp-home{
+  	color: #585858;
+
+	padding: 50px 0px;
+	background: #f7f7f7;
+	.drapp-logo{
+		margin: 0 auto;
+	}
+
+
+	.title{
+		h3{
+			display: inline-block;
+			font-size: 50px;
+			position: relative;
+		}
+	}
+	.desc{
+		p{
+			font-size: 18px;
+			line-height: 35px;
+			margin: 20px 0;
+		}
+	}
+	.download{
+		font-size: 26px;
+		a{
+			margin-top: 10px;
+		}
+	}
+}
+.step{
+  	color: #585858;
+	padding: 60px 0px;
+	p {
+		font-size: 18px;
+		line-height: 35px;
+		padding-top: 5px;
+	}
+	h3 {
+		display: inline-block;
+		height: 78px;
+		font-size: 26px;
+		position: relative;
+	}
+}
+
+.navbar-drapp{
+	.navbar-brand{
+		color: #5FB0E4!important;
+
+		&:hover, &:focus{
+ 		    color: #5FB0E4!important;
+		}
+	}
+
+	.navbar-nav>li>a {
+		border: 0 solid #5FB0E4;
+		color: #787878;
+		padding: 15px 14px;
+	}
+
+	.navbar-nav>li:not(.disabled).active>a,
+	.navbar-nav>li:not(.disabled).open>a,
+	.navbar-nav>li:not(.disabled)>a:focus,
+	.navbar-nav>li:not(.disabled)>a:hover {
+		border-left-width: 5px;
+		color: #5FB0E4;
+		padding-left: 10px;
+	}
+
+	.navbar-nav>li>.dropdown-menu>li>a {
+		  border-left: 0 solid #5FB0E4;
+		  color: #787878;
+		  font-size: 16px;
+		  font-weight: 400;
+		  padding: 10px 20px;
+		  white-space: nowrap;
+	}
+}
+
+@media (max-width: 768px){
+	.step {
+		padding: 10px 0px;
+		border-bottom: 1px #ccc solid;
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+	.step .img-responsive{
+		margin: 0 auto;
+	}
+	.login-panel{
+		margin-top: 10%!important;
+		margin-bottom: 10%!important;
+	}
+}
+
+@media screen and (min-width: 768px){
+	.navbar-drapp{
+		.navbar-brand {
+			font-size: 20px;
+			height: auto;
+			padding: 15px 5px;
+		}
+
+		.navbar-nav>li:not(.disabled).active>a,
+		.navbar-nav>li:not(.disabled).open>a,
+		.navbar-nav>li:not(.disabled)>a:focus,
+		.navbar-nav>li:not(.disabled)>a:hover {
+			border-bottom-width: 5px;
+			border-left-width: 0;
+			padding-bottom: 10px;
+			padding-left: 14px;
+		}
+	}
+	.login-panel{
+		margin-top: 10%!important;
+		margin-bottom: 10%!important;
+	}
+}

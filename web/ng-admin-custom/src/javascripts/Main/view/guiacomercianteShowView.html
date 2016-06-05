@@ -1,0 +1,234 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <ma-view-actions override="::showController.actions" entry="entry" entity="::showController.entity">
+                <a class="btn btn-default" ng-click="open($event, 'show-view')" ng-controller="HandlePrintController">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;<span class="hidden-xs ng-binding">Imprimir</span>
+                </a>
+                <ma-create-button ng-if="::entity.creationView().enabled" label="{{ 'action.creation_view' | trans }}" entity="::entity"></ma-create-button>
+                <ma-list-button ng-if="::entity.listView().enabled" label="{{ 'action.list' | trans }}" entity="::entity"></ma-list-button>
+                <ma-edit-button ng-if="::entity.editionView().enabled" label="{{ 'action.edit' | trans }}" entry="entry" entity="::entity"></ma-edit-button>
+                <ma-delete-button ng-if="::entity.deletionView().enabled" label="{{ 'action.delete' | trans }}" entry="entry" entity="::entity"></ma-delete-button>
+            </ma-view-actions>
+            <h1 compile="::showController.title">
+                {{ 'action.detail' | trans }} {{ ::showController.view.entity.name() | humanize:true | singularize }}  #{{ ::entry.identifierValue }}
+            </h1>
+            <p class="lead" ng-if="::showController.description" compile="::showController.description">{{ ::showController.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="show-view">
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr class="info">
+                    <th colspan="5" class="text-center">GUÍA DE TRASLADO</th>
+                </tr>
+                <tr class="info">
+                    <th colspan="3">FECHA DE VIAJE</th>
+                    <th colspan="2">CÓDIGO DE GUÍA</th>
+                </tr>
+                <tr>
+                    <td colspan="3"> {{entry.values['fechsali'] | amDateFormat:'LL'}}</td>
+                    <td colspan="2"> {{ entry.values['codi'] }}</td>
+                </tr>
+
+                <tr class="info">
+                    <th colspan="5">COMERCIANTE</th>
+                </tr>
+                <tr>
+                    <th>RIF</th>
+                    <th colspan="4">RAZON SOCIAL</th>
+                </tr>
+                <tr>
+                    <td> {{ entry.values['mercantil.fix_rif'] }}</td>
+                    <td colspan="4">{{ entry.values['mercantil.razon_social'] }}</td>
+                </tr>
+
+                <tr  class="info">
+                    <th ng-if="entry.values['mercantil.prop'].length > 1" colspan="5">PROPIETARIOS</th>
+                    <th ng-if="entry.values['mercantil.prop'].length <= 1" colspan="5">PROPIETARIO</th>
+                </tr>
+                <tr>
+                    <th>DOCUMENTO DE IDENTIDAD</th>
+                    <th colspan="2">NOMBRE Y APELLIDO</th>
+                    <th colspan="2">TELÉFONO CELULAR</th>
+                </tr>
+                <tr ng-repeat="item in entry.values['mercantil.prop'] track by $index">
+                    <td>{{ item.persona.nac_cedu }}</td>
+                    <td colspan="2">{{ item.persona.nomb_apell }}</td>
+                    <td colspan="2">{{ item.persona.telf }}</td>
+                </tr>
+
+                <tr class="info">
+                    <th colspan="5">DIRECCIÓN</th>
+                </tr>
+                <tr>
+                    <th colspan="2">ESTADO</th>
+                    <th>MUNICIPIO</th>
+                    <th colspan="2">PARROQUIA</th>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ entry.values['mercantil.direccion.edo.edo_nomb'] }}</td>
+                    <td>{{ entry.values['mercantil.direccion.muni.muni_nomb'] }}</td>
+                    <td colspan="2">{{ entry.values['mercantil.direccion.parroq.parroq_nomb'] }}</td>
+                </tr>
+                <tr>
+                    <th colspan="2">ZONA/SECTOR</th>
+                    <th>AVENIDA/CALLE</th>
+                    <th colspan="2">PUNTO DE REFERENCIA</th>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ entry.values['mercantil.direccion.zona.zona_nomb'] }}</td>
+                    <td>{{ entry.values['mercantil.direccion.av_calle'] }}</td>
+                    <td colspan="2">{{ entry.values['mercantil.direccion.pto_ref'] }}</td>
+                </tr>
+
+                <tr ng-if="entry.values['transporte'].length > 0" class="info">
+                    <th colspan="5"> TRANSPORTE  <span class="pull-right">N° DE VEHÍCULO: {{entry.values['transporte'].length}}</span></th>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <table class="table table-bordered" ng-repeat="itemg in  entry.values['transporte']">
+                            <tbody>
+                                <tr class="info">
+                                    <th colspan="5"> VEHÍCULO #{{($index + 1)}} <span class="pull-right">CÓDIGO DE GUÍA: {{itemg.codi}}</span></th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">PLACA</th>
+                                    <th colspan="1">MARCA</th>
+                                    <th colspan="2">MODELO</th>
+                                    <th colspan="1">COLOR</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">{{itemg.vehiculo.placa}}</td>
+                                    <td colspan="1">{{itemg.vehiculo.marca.nomb}}</td>
+                                    <td colspan="2">{{itemg.vehiculo.modelo.modelo_anio}}</td>
+                                    <td colspan="1">{{itemg.vehiculo.color}}</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="5"> CONDUCTOR </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">CÉDULA</th>
+                                    <th colspan="3">NOMBRE Y APELLIDO</th>
+                                    <th colspan="1">TELÉFONO</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">{{itemg.conductor.nac_cedu}}</td>
+                                    <td colspan="3">{{itemg.conductor.nomb_apell}}</td>
+                                    <td colspan="1">{{itemg.conductor.telf}}</td>
+                                </tr>
+                                <tr class="info">
+                                    <th colspan="5"> EMPRESA DESTINO <span class="pull-right">N° DE EMPRESA: {{itemg.cliente.length}}</span></th>
+                                </tr>
+                                <tr ng-init="clientes_total = 0;">
+                                    <td colspan="5">
+                                        <table class="table table-bordered" ng-repeat="iteme in itemg.cliente">
+                                            <tbody>
+                                                <tr class="info">
+                                                    <th colspan="5"> EMPRESA #{{($index + 1)}} </th>
+                                                </tr>
+                                                <tr class="info">
+                                                    <th>RIF</th>
+                                                    <th colspan="4">RAZON SOCIAL</th>
+                                                </tr>
+                                                <tr>
+                                                    <td> {{ iteme.mercantil.fix_rif }}</td>
+                                                    <td colspan="4">{{ iteme.mercantil.razon_social }}</td>
+                                                </tr>
+                                                <tr class="info">
+                                                </tr>
+                                                <tr class="info">
+                                                    <th ng-if="iteme.mercantil.prop.length > 1" colspan="5">PROPIETARIOS</th>
+                                                    <th ng-if="iteme.mercantil.prop.length <= 1" colspan="5">PROPIETARIO</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>DOCUMENTO DE IDENTIDAD</th>
+                                                    <th colspan="2">NOMBRE Y APELLIDO</th>
+                                                    <th colspan="2">TELÉFONO CELULAR</th>
+                                                </tr>
+                                                <tr ng-repeat="item in iteme.mercantil.prop track by $index">
+                                                    <td>{{ item.persona.nac_cedu }}</td>
+                                                    <td colspan="2">{{ item.persona.nomb_apell }}</td>
+                                                    <td colspan="2">{{ item.persona.telf }}</td>
+                                                </tr>
+
+                                                <tr class="info">
+                                                    <th colspan="5">DIRECCIÓN</th>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">ESTADO</th>
+                                                    <th>MUNICIPIO</th>
+                                                    <th colspan="2">PARROQUIA</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">{{ iteme.mercantil.direccion.edo.edo_nomb }}</td>
+                                                    <td>{{ iteme.mercantil.direccion.muni.muni_nomb }}</td>
+                                                    <td colspan="2">{{ iteme.mercantil.direccion.parroq.parroq_nomb }}</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="2">ZONA/SECTOR</th>
+                                                    <th>AVENIDA/CALLE</th>
+                                                    <th colspan="2">PUNTO DE REFERENCIA</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">{{ iteme.mercantil.direccion.zona.zona_nomb }}</td>
+                                                    <td>{{ iteme.mercantil.direccion.av_calle }}</td>
+                                                    <td colspan="2">{{ iteme.mercantil.direccion.pto_ref }}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th colspan="1">PRODUCTO</th>
+                                                    <td colspan="4">
+                                                        <table class="table table-bordered">
+                                                            <tbody ng-init="cliente_total = 0;">
+                                                                <tr>
+                                                                    <th colspan="1">PRODUCTO</th>
+                                                                    <th>PRESENTACIÓN</th>
+                                                                    <th>CANTIDAD</th>
+                                                                    <th colspan="1">PREC. COMPRA($)</th>
+                                                                    <th colspan="1">PREC. VENTA(FINAL)</th>
+                                                                    <th colspan="1">OBS.</th>
+                                                                </tr>
+                                                                <tr ng-repeat="itemf in iteme.producto" ng-init="$parent.cliente_total = $parent.cliente_total + itemf.venta; $parent.$parent.clientes_total = $parent.$parent.clientes_total + itemf.total;">
+                                                                    <td colspan="1">{{itemf.producto.nomb}} {{itemf.prodmarca.marca.nomb}}</td>
+                                                                    <td>{{ itemf.pres_uni }} x {{ itemf.pres_num }} {{ itemf.medida.nomb }}</td>
+                                                                    <td>{{ itemf.pres_cant }} {{ itemf.mmedida.nomb }}</td>
+                                                                    <td colspan="1">{{ itemf.compra | currency:"$"}}</td>
+                                                                    <td colspan="1">{{ itemf.venta | currency:"Bs.F"}}</td>
+                                                                    <td colspan="1">{{ itemf.obs}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-right">REGISTRADO POR USUARIO</th>
+                    <td colspan="3">{{ entry.values['user.username'] }}</td>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-right">FECHA REGISTRADO</th>
+                    <td colspan="3"> {{entry.values['fechcreado'] | amDateFormat:'LL'}}  {{entry.values['fechcreado'] | amDateFormat: 'h:mm:ss a'}} </td>
+                </tr>
+                <tr>
+                    <th colspan="2" class="text-right">FECHA MODIFICADO</th>
+                    <td colspan="3"> {{entry.values['fechmodi'] | amDateFormat:'LL'}}  {{entry.values['fechmodi'] | amDateFormat: 'h:mm:ss a'}} </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

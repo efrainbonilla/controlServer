@@ -1,0 +1,26 @@
+{
+  "name": "ng-admin-custom",
+  "version": "0.0.1",
+  "private": false,
+  "main": "build/custom.min.js",
+  "dependencies": {
+    "angular-filter": "^0.5.5",
+    "angular-moment": "^0.10.2",
+    "angular-i18n": "^1.5.5",
+    "bower": "^1.4.1",
+    "imports-loader": "^0.6.4",
+    "json-loader": "^0.5.2",
+    "moment": "^2.10.6",
+    "moment-timezone": "^0.4.0",
+    "npm": "^2.10.0",
+    "roboto-fontface": "^0.4.2"
+  },
+  "devDependencies": {
+    "angular-http-auth": "^1.2.1",
+    "angular-jwt": "0.0.9",
+    "angular-storage": "0.0.11"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

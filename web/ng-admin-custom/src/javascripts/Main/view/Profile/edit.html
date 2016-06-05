@@ -1,0 +1,81 @@
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="page-header">
+            <h1>
+                Cuenta
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="edit-view">
+    <form class="col-lg-12 form-horizontal" name="profileController.form" ng-submit="profileController.submitEdition($event, user)">
+
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label requerid">
+                {{ 'form.username'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+            </label>
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <input type="text" name="username" id="username" class="form-control" required="required" ng-model="user.username">
+                <span ng-if="msg.username" class="help-inline">{{msg.username}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-2 control-label requerid">
+                {{ 'form.email'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+            </label>
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <input type="text" name="email" id="email" class="form-control" required="required" ng-model="user.email">
+                <span ng-if="msg.email" class="help-inline">{{msg.email}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname" class="col-sm-2 control-label requerid">
+                Nombre: <span class="requerid">&nbsp;*</span>&nbsp;
+            </label>
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <input type="text" name="first_name" id="first_name" class="form-control" required="required" ng-model="user.first_name">
+                <span ng-if="msg.first_name" class="help-inline">{{msg.first_name}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label requerid">
+                Apellido <span class="requerid">&nbsp;*</span>&nbsp;
+            </label>
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <input type="text" name="last_name" id="last_name" class="form-control" required="required" ng-model="user.last_name">
+                <span ng-if="msg.last_name" class="help-inline">{{msg.last_name}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label requerid">
+                Genero <span class="requerid">&nbsp;*</span>&nbsp;
+            </label>
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <ui-select ng-model="user.gender" ng-required="true" id="gender" name="gender">
+                    <ui-select-match allow-clear="false" placeholder="SELECCIONE GENERO">{{ $select.selected.label }}</ui-select-match>
+                    <ui-select-choices repeat="item.value as item in genders | filter: {label: $select.search} track by $index">
+                        {{ item.label }}
+                    </ui-select-choices>
+                </ui-select>
+                <span ng-if="msg.gender" class="help-inline">{{msg.gender}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="current_password" class="col-sm-2 control-label requerid">
+                {{ 'form.current_password'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+            </label>
+            <div class="col-sm-10 col-md-8 col-lg-7">
+                <input type="password" name="current_password" id="current_password" class="form-control" required="required" ng-model="user.current_password">
+                <span ng-if="msg.current_password" class="help-inline">{{msg.current_password}}</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" ng-click="profileController.submitEdition($event, user)" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> {{ 'profile.edit.submit'|trans }}</button>
+            </div>
+        </div>
+    </form>
+</div>

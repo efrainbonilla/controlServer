@@ -1,0 +1,98 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="page-header">
+            <ma-view-actions override="::showController.actions" entry="entry" entity="::showController.entity">
+                <a class="btn btn-default" ng-click="open($event, 'show-view')" ng-controller="HandlePrintController">
+                    <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;<span class="hidden-xs ng-binding">Imprimir</span>
+                </a>
+                <ma-list-button ng-if="::entity.listView().enabled" label="{{ 'action.list' | trans }}" entity="::entity"></ma-list-button>
+                <ma-edit-button ng-if="::entity.editionView().enabled" label="{{ 'action.edit' | trans }}" entry="entry" entity="::entity"></ma-edit-button>
+                <ma-delete-button ng-if="::entity.deletionView().enabled" label="{{ 'action.delete' | trans }}" entry="entry" entity="::entity"></ma-delete-button>
+            </ma-view-actions>
+            <h1 compile="::showController.title">
+                {{ 'action.detail' | trans }} {{ ::showController.view.entity.name() | humanize:true | singularize }}  #{{ ::entry.identifierValue }}
+            </h1>
+            <p class="lead" ng-if="::showController.description" compile="::showController.description">{{ ::showController.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="show-view">
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr class="info">
+                    <th colspan="5">TIPO ENTIDAD</th>
+                </tr>
+                <tr ng-repeat="item in entry.values['_tipo'] track by $index">
+                    <td colspan="5">{{ item.tipo.desc }}</td>
+                </tr>
+                <tr class="info">
+                    <th colspan="5">ENTIDAD</th>
+                </tr>
+                <tr>
+                    <th>RIF</th>
+                    <th colspan="4">RAZON SOCIAL</th>
+                </tr>
+                <tr>
+                    <td> {{ entry.values['fix_rif'] }}</td>
+                    <td colspan="4">{{ entry.values['razon_social'] }}</td>
+                </tr>
+
+                <tr class="info">
+                    <th colspan="5">PROPIETARIOS</th>
+                </tr>
+                <tr>
+                    <th>DOCUMENTO DE IDENTIDAD</th>
+                    <th colspan="2">NOMBRE Y APELLIDO</th>
+                    <th colspan="2">TELÉFONO CELULAR</th>
+                </tr>
+                <tr ng-repeat="item in entry.values['_prop'] track by $index">
+                    <td>{{ item.persona.nac_cedu }}</td>
+                    <td colspan="2">{{ item.persona.nomb_apell }}</td>
+                    <td colspan="2">{{ item.persona.telf }}</td>
+                </tr>
+
+                <tr class="info">
+                    <th colspan="5">REPRESENTANTES</th>
+                </tr>
+                <tr>
+                    <th>DOCUMENTO DE IDENTIDAD</th>
+                    <th colspan="2">NOMBRE Y APELLIDO</th>
+                    <th colspan="2">TELÉFONO CELULAR</th>
+                </tr>
+                <tr ng-repeat="item in entry.values['_repres'] track by $index">
+                    <td>{{ item.persona.nac_cedu }}</td>
+                    <td colspan="2">{{ item.persona.nomb_apell }}</td>
+                    <td colspan="2">{{ item.persona.telf }}</td>
+                </tr>
+
+                <tr class="info">
+                    <th colspan="5">DIRECCIÓN</th>
+                </tr>
+                <tr>
+                    <th colspan="2">ESTADO</th>
+                    <th>MUNICIPIO</th>
+                    <th colspan="2">PARROQUIA</th>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ entry.values['direccion.edo.edo_nomb'] }}</td>
+                    <td>{{ entry.values['direccion.muni.muni_nomb'] }}</td>
+                    <td colspan="2">{{ entry.values['direccion.parroq.parroq_nomb'] }}</td>
+                </tr>
+                <tr>
+                    <th colspan="2">ZONA/SECTOR</th>
+                    <th>AVENIDA/CALLE</th>
+                    <th colspan="2">PUNTO DE REFERENCIA</th>
+                </tr>
+                <tr>
+                    <td colspan="2">{{ entry.values['direccion.zona.zona_nomb'] }}</td>
+                    <td>{{ entry.values['direccion.av_calle'] }}</td>
+                    <td colspan="2">{{ entry.values['direccion.pto_ref'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

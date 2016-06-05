@@ -1,0 +1,88 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Escritorio</h1>
+    </div>
+</div>
+
+<div class="row dashboard-content">
+    <div class="col-lg-6">
+        <div class="panel panel-default" ng-repeat="collection in dashboardController.collections | orderElement" ng-if="$even">
+            <ma-dashboard-panel collection="collection" entries="dashboardController.entries[collection.name()]"></ma-dashboard-panel>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-default" ng-repeat="collection in dashboardController.collections | orderElement" ng-if="$odd">
+            <ma-dashboard-panel collection="collection" entries="dashboardController.entries[collection.name()]"></ma-dashboard-panel>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row dashboard-starter"></div>
+<div class="row dashboard-content"><div class="col-lg-12"><div class="alert alert-info">
+    HISTORIAL DE PRODUCTOS REGISTRADOS
+</div></div></div>
+
+<div ng-controller="DashboardBetweenReportController">
+<div class="row dashboard-content">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <a> GENERAL</a>
+            </div>
+            <sicap-dashboard-between-datagrid collection="alls"></sicap-dashboard-between-datagrid>
+        </div>
+    </div>
+</div>
+<div class="row dashboard-content">
+    <div class="col-lg-6">
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <a> HOY</a>
+                <div> {{ days.dateFrom  | amDateFormat:'LL' }} </div>
+            </div>
+            <sicap-dashboard-between-datagrid collection="days"></sicap-dashboard-between-datagrid>
+        </div>
+        <div class="panel panel-green">
+            <div class="panel-heading">
+                <a> AYER</a>
+                <div> {{ daysBefore.dateFrom  | amDateFormat:'LL' }} </div>
+            </div>
+            <sicap-dashboard-between-datagrid collection="daysBefore"></sicap-dashboard-between-datagrid>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <a> SEMANA</a>
+                <div> {{ weeks.dateFrom  | amDateFormat:'LL' }}  <b>&nbsp; &nbsp; - &nbsp; &nbsp;</b> {{ weeks.dateTo | amDateFormat:'LL' }} </div>
+            </div>
+            <sicap-dashboard-between-datagrid collection="weeks"></sicap-dashboard-between-datagrid>
+        </div>
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <a> SEMANA ANTERIOR</a>
+                <div> {{ weeksBefore.dateFrom  | amDateFormat:'LL' }}  <b>&nbsp; &nbsp; - &nbsp; &nbsp;</b> {{ weeksBefore.dateTo | amDateFormat:'LL' }} </div>
+            </div>
+            <sicap-dashboard-between-datagrid collection="weeksBefore"></sicap-dashboard-between-datagrid>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <a> MES</a>
+                <div> {{ months.dateFrom  | amDateFormat:'LL' }}  <b>&nbsp; &nbsp; - &nbsp; &nbsp;</b> {{ months.dateTo | amDateFormat:'LL' }} </div>
+            </div>
+            <sicap-dashboard-between-datagrid collection="months"></sicap-dashboard-between-datagrid>
+        </div>
+        <div class="panel panel-yellow">
+            <div class="panel-heading">
+                <a> MES ANTERIOR</a>
+                <div> {{ monthsBefore.dateFrom  | amDateFormat:'LL' }}  <b>&nbsp; &nbsp; - &nbsp; &nbsp;</b> {{ monthsBefore.dateTo | amDateFormat:'LL' }} </div>
+            </div>
+            <sicap-dashboard-between-datagrid collection="monthsBefore"></sicap-dashboard-between-datagrid>
+        </div>
+    </div>
+</div>
+</div>
+ -->

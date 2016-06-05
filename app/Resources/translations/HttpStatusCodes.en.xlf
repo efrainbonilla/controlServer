@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="status.100">
+                <source>status.100</source>
+                <target>Continue</target>
+            </trans-unit>
+            <trans-unit id="status.101">
+                <source>status.101</source>
+                <target>Switching Protocols</target>
+            </trans-unit>
+            <trans-unit id="status.102">
+                <source>status.102</source>
+                <target>Processing</target>
+            </trans-unit>
+            <trans-unit id="status.200">
+                <source>status.200</source>
+                <target>OK</target>
+            </trans-unit>
+            <trans-unit id="status.201">
+                <source>status.201</source>
+                <target>Created</target>
+            </trans-unit>
+            <trans-unit id="status.202">
+                <source>status.202</source>
+                <target>Accepted</target>
+            </trans-unit>
+            <trans-unit id="status.203">
+                <source>status.203</source>
+                <target>Non-Authoritative Information</target>
+            </trans-unit>
+            <trans-unit id="status.204">
+                <source>status.204</source>
+                <target>No Content</target>
+            </trans-unit>
+            <trans-unit id="status.205">
+                <source>status.205</source>
+                <target>Reset Content</target>
+            </trans-unit>
+            <trans-unit id="status.206">
+                <source>status.206</source>
+                <target>Partial Content</target>
+            </trans-unit>
+            <trans-unit id="status.207">
+                <source>status.207</source>
+                <target>Multi-Status</target>
+            </trans-unit>
+            <trans-unit id="status.208">
+                <source>status.208</source>
+                <target>Already Reported</target>
+            </trans-unit>
+            <trans-unit id="status.226">
+                <source>status.226</source>
+                <target>IM Used</target>
+            </trans-unit>
+            <trans-unit id="status.300">
+                <source>status.300</source>
+                <target>Multiple Choices</target>
+            </trans-unit>
+            <trans-unit id="status.301">
+                <source>status.301</source>
+                <target>Moved Permanently</target>
+            </trans-unit>
+            <trans-unit id="status.302">
+                <source>status.302</source>
+                <target>Found</target>
+            </trans-unit>
+            <trans-unit id="status.303">
+                <source>status.303</source>
+                <target>See Other</target>
+            </trans-unit>
+            <trans-unit id="status.304">
+                <source>status.304</source>
+                <target>Not Modified</target>
+            </trans-unit>
+            <trans-unit id="status.305">
+                <source>status.305</source>
+                <target>Use Proxy</target>
+            </trans-unit>
+            <trans-unit id="status.306">
+                <source>status.306</source>
+                <target>Reserved</target>
+            </trans-unit>
+            <trans-unit id="status.307">
+                <source>status.307</source>
+                <target>Temporary Redirect</target>
+            </trans-unit>
+            <trans-unit id="status.308">
+                <source>status.308</source>
+                <target>Permanent Redirect</target>
+            </trans-unit>
+            <trans-unit id="status.400">
+                <source>status.400</source>
+                <target>Bad Request</target>
+            </trans-unit>
+            <trans-unit id="status.401">
+                <source>status.401</source>
+                <target>Unauthorized</target>
+            </trans-unit>
+            <trans-unit id="status.402">
+                <source>status.402</source>
+                <target>Payment Required</target>
+            </trans-unit>
+            <trans-unit id="status.403">
+                <source>status.403</source>
+                <target>Forbidden</target>
+            </trans-unit>
+            <trans-unit id="status.404">
+                <source>status.404</source>
+                <target>Not Found</target>
+            </trans-unit>
+            <trans-unit id="status.405">
+                <source>status.405</source>
+                <target>Method Not Allowed</target>
+            </trans-unit>
+            <trans-unit id="status.406">
+                <source>status.406</source>
+                <target>Not Acceptable</target>
+            </trans-unit>
+            <trans-unit id="status.407">
+                <source>status.407</source>
+                <target>Proxy Authentication Required</target>
+            </trans-unit>
+            <trans-unit id="status.408">
+                <source>status.408</source>
+                <target>Request Timeout</target>
+            </trans-unit>
+            <trans-unit id="status.409">
+                <source>status.409</source>
+                <target>Conflict</target>
+            </trans-unit>
+            <trans-unit id="status.410">
+                <source>status.410</source>
+                <target>Gone</target>
+            </trans-unit>
+            <trans-unit id="status.411">
+                <source>status.411</source>
+                <target>Length Required</target>
+            </trans-unit>
+            <trans-unit id="status.412">
+                <source>status.412</source>
+                <target>Precondition Failed</target>
+            </trans-unit>
+            <trans-unit id="status.413">
+                <source>status.413</source>
+                <target>Request Entity Too Large</target>
+            </trans-unit>
+            <trans-unit id="status.414">
+                <source>status.414</source>
+                <target>Request-URI Too Long</target>
+            </trans-unit>
+            <trans-unit id="status.415">
+                <source>status.415</source>
+                <target>Unsupported Media Type</target>
+            </trans-unit>
+            <trans-unit id="status.416">
+                <source>status.416</source>
+                <target>Requested Range Not Satisfiable</target>
+            </trans-unit>
+            <trans-unit id="status.417">
+                <source>status.417</source>
+                <target>Expectation Failed</target>
+            </trans-unit>
+            <trans-unit id="status.418">
+                <source>status.418</source>
+                <target>I\m a teapot</target>
+            </trans-unit>
+            <trans-unit id="status.422">
+                <source>status.422</source>
+                <target>Unprocessable Entity</target>
+            </trans-unit>
+            <trans-unit id="status.423">
+                <source>status.423</source>
+                <target>Locked</target>
+            </trans-unit>
+            <trans-unit id="status.424">
+                <source>status.424</source>
+                <target>Failed Dependency</target>
+            </trans-unit>
+            <trans-unit id="status.425">
+                <source>status.425</source>
+                <target>Reserved for WebDAV advanced collections expired proposal</target>
+            </trans-unit>
+            <trans-unit id="status.426">
+                <source>status.426</source>
+                <target>Upgrade Required</target>
+            </trans-unit>
+            <trans-unit id="status.428">
+                <source>status.428</source>
+                <target>Precondition Required</target>
+            </trans-unit>
+            <trans-unit id="status.429">
+                <source>status.429</source>
+                <target>Too Many Requests</target>
+            </trans-unit>
+            <trans-unit id="status.431">
+                <source>status.431</source>
+                <target>Request Header Fields Too Large</target>
+            </trans-unit>
+            <trans-unit id="status.500">
+                <source>status.500</source>
+                <target>Internal Server Error</target>
+            </trans-unit>
+            <trans-unit id="status.501">
+                <source>status.501</source>
+                <target>Not Implemented</target>
+            </trans-unit>
+            <trans-unit id="status.502">
+                <source>status.502</source>
+                <target>Bad Gateway</target>
+            </trans-unit>
+            <trans-unit id="status.503">
+                <source>status.503</source>
+                <target>Service Unavailable</target>
+            </trans-unit>
+            <trans-unit id="status.504">
+                <source>status.504</source>
+                <target>Gateway Timeout</target>
+            </trans-unit>
+            <trans-unit id="status.505">
+                <source>status.505</source>
+                <target>HTTP Version Not Supported</target>
+            </trans-unit>
+            <trans-unit id="status.506">
+                <source>status.506</source>
+                <target>Variant Also Negotiates (Experimental)</target>
+            </trans-unit>
+            <trans-unit id="status.507">
+                <source>status.507</source>
+                <target>Insufficient Storage</target>
+            </trans-unit>
+            <trans-unit id="status.508">
+                <source>status.508</source>
+                <target>Loop Detected</target>
+            </trans-unit>
+            <trans-unit id="status.510">
+                <source>status.510</source>
+                <target>Not Extended</target>
+            </trans-unit>
+            <trans-unit id="status.511">
+                <source>status.511</source>
+                <target>Network Authentication Required</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

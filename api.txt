@@ -1,0 +1,123 @@
+## AUTENTICACION
+
+POST /api/login_check
+
+{"username": "admin", "password": "efraco"}
+{"username": "usuarioprueba", "password": "123456"}
+
+#PROFILE
+GET /api/profile
+
+POST /api/profile
+
+{
+	"username": "zzzx",
+	"email": "zzzx@gmail.com",
+	"password": "123456",
+	"first_name": "zzz1",
+	"last_name": "zzz3"
+}
+
+#REGISTRO
+POST /api/register
+
+{
+	"username": "zzzx",
+	"email": "zzzx@gmail.com",
+	"password": "123456",
+	"first_name": "zzz1",
+	"last_name": "zzz3"
+}
+
+
+## USUARIOS
+
+GET /api/users
+
+GET /api/users/1
+
+POST /api/users
+
+PUT /api/users/1
+
+
+
+## COMERCIOS
+
+GET /api/comercios?limit=15000
+GET /api/comercios/list
+
+GET /api/comercios/1
+
+POST /api/comercios
+
+{
+	"com_rif_fix": "J",
+	"com_act_ecnma": "transporte de gasolina",
+	"com_apell_repres": "gonzalez",
+	"com_cedu_repres": "34431423323",
+	"com_nacion": "V",
+	"com_nomb_estb": "bachaco c.a.",
+	"com_nomb_repres": "gustavo",
+	"com_num_lic": "we234234",
+	"com_num_ptte": "23423423",
+	"com_rif": "43535345412",
+	"com_telef": "04162999862",
+	"direccion": {
+		"edo_codi": "23",
+		"muni_codi": "2315",
+		"parroq_codi": "231502",
+		"zona": "2235",
+		"av_calle": "2a",
+		"pto_ref": "raya colombia vzla"
+	}
+}
+
+
+
+PUT /api/comercios/1
+
+{
+	"com_nomb_repres":"",
+	"com_apell_repres":"",
+	"com_cedu_repres":""
+}
+
+
+## PAIS
+
+GET /api/pais
+
+
+## ESTADOS
+
+GET /api/estados
+
+GET /api/estados?filters[pais]=22
+
+
+
+
+## MUNICIPIOS
+
+GET /api/municipios
+GET /api/municipios?filters[edoCodi]=23
+
+
+## PARROQUIAS
+
+GET /api/parroquias
+GET /api/parroquias?filters[muniCodi]=2315
+
+## ZONAS
+
+GET /api/zonas
+GET /api/zonas?filters[parroqCodi]=2315
+
+
+## UTILITY
+
+GET /api/filters/operators
+
+
+GET /api/comercios/2/detail

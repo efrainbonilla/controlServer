@@ -1,0 +1,62 @@
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Inicio de sesión</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div ng-if="loginComplete">
+                            <p>Hola <b>{{username}}</b>!</p>
+
+                            <p>Te has conectado con exito.</p>
+                            <p>Por favor espere unos segundos. </p>
+                            <p>Se está preparando tu escritorio de trabajo. </p>
+
+                            <hr>
+                            <p class="text-center">
+                                <a  href="#/dashboard">Ir a panel de control</a>
+                            </p>
+                        </div>
+                        <div class="alert alert-danger" ng-if="errorMessage">
+                             {{ errorMessage }}
+                        </div>
+                        <div class="row" ng-if="!loginComplete">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form name="loginController.form" role="form" ng-submit="submit($event, credentials)">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-user"></i></div>
+                                            <input type="text" class="form-control" ng-model="credentials.username" placeholder="{{ 'security.login.username' | trans }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+                                            <input type="password" class="form-control" ng-model="credentials.password" placeholder="{{'form.password' | trans }}" required>
+                                        </div>
+                                    </div>
+                                    <a href="#/resetting/request" title="" class="pull-right">Has olvidado tu contraseña?</a>
+
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-model="credentials.remember" type="checkbox">Recuérdame
+                                        </label>
+                                    </div>
+                                    <button class="btn btn-lg btn-success btn-block" ng-click="submit($event, credentials)">{{'security.login.submit' | trans}} </button>
+                                    <br>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="text-center" ng-if="!loginComplete">
+                            <a href="#/register" title="">Registrar una cuenta</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

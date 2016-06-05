@@ -1,0 +1,82 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+        # chain_provider:
+        #     chain:
+        #         providers: [in_memory, fos_userbundle]
+        # in_memory:
+        #     memory:
+        #         users:
+        #             user:  { password: password, roles: [ 'ROLE_USER' ] }
+        #             admin: { password: password, roles: [ 'ROLE_ADMIN' ] }
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        dev:
+            # pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            pattern:  ^/api/(_(profiler|wdt|doc))/
+            security: false
+
+        # main:
+        #     pattern: ^/
+        #     form_login:
+        #         provider: fos_userbundle
+        #     logout:       true
+        #     anonymous:    true
+
+        login:
+            pattern:  ^/api/login
+            stateless: true
+            anonymous: true
+            form_login:
+                provider: fos_userbundle
+                check_path: /api/login_check
+                require_previous_session: false
+                username_parameter: username
+                password_parameter: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        register:
+            pattern:  ^/api/register
+            stateless: true
+            anonymous: true
+
+        resetting:
+            pattern:  ^/api/resetting
+            stateless: true
+            anonymous: true
+
+        api:
+            pattern:   ^/api
+            stateless: true
+            lexik_jwt:
+                authorization_header: # check token in Authorization Header
+                    enabled: true
+                    prefix:  Bearer
+                query_parameter:      # check token in query string parameter
+                    enabled: true
+                    name:    bearer
+                throw_exceptions: false     # When an authentication failure occurs, return a 401 response immediately
+                create_entry_point: true    # When no authentication details are provided, create a default entry point that returns a 401 response
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+
+        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+        - { path: ^/api/register/check-email, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register/confirmed, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register/confirm/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/resetting, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

@@ -1,0 +1,23 @@
+fos_user:
+    db_driver:      orm # otros valores válidos son 'mongodb', 'couchdb
+    firewall_name:  login # login, main
+    user_class:     AppBundle\Entity\User
+    service:
+        mailer:     app.mailer.twig_swift
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address:        sicapguajira@gmail.com
+                sender_name:    SICAP GUAJIRA - REGISTRO DE USUARIO
+            # template:
+    resetting:
+        email:
+            from_email:
+                address:        sicapguajira@gmail.com
+                sender_name:    SICAP GUAJIRA - RESTABLECER CONTRASEÑA
+            # template:
+
+    from_email:
+        address:        sicapguajira@gmail.com
+        sender_name:    SICAP GUAJIRA

@@ -1,0 +1,78 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+    app.event.jwt_response_listener.class: AppBundle\EventListener\JWTResponseListener
+    app.event.jwt_created_listener.class: AppBundle\EventListener\JWTCreatedListener
+    app.event.jwt_decoded_listener.class: AppBundle\EventListener\JWTDecodedListener
+    app.event.x_total_count.class: AppBundle\EventListener\XTotalCountResponseListener
+
+services:
+    app.event.jwt_response_listener:
+        class: %app.event.jwt_response_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+    app.event.jwt_created_listener:
+        class: %app.event.jwt_created_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+    app.event.jwt_decoded_listener:
+        class: %app.event.jwt_decoded_listener.class%
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_decoded, method: onJWTDecoded }
+
+    app.event.x_total_count:
+        class: %app.event.x_total_count.class%
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    app.event.redirect_route:
+        class: AppBundle\EventListener\RedirectRouteResponseListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+
+    app.profile.form.type:
+        class: AppBundle\Form\Type\ProfileFormType
+        arguments:    ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type }
+
+    app.change_password.form.type:
+        class: AppBundle\Form\Type\ChangePasswordFormType
+        arguments:    ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type }
+
+    app.registration.form.type:
+        class: AppBundle\Form\Type\RegistrationFormType
+        arguments:    ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type }
+
+    app.listener.email_confirmation:
+        class: AppBundle\EventListener\EmailConfirmationListener
+        arguments:    ["@fos_user.mailer", "@fos_user.util.token_generator", "@router", "@session"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.resetting.form.type:
+        class: AppBundle\Form\Type\ResettingFormType
+        arguments:    ["%fos_user.model.user.class%"]
+        tags:
+            - { name: form.type }
+
+    app.mailer.twig_swift:
+        class: AppBundle\Mailer\TwigSwiftMailer
+        arguments:
+            - "@mailer"
+            - "@router"
+            - "@twig"
+            -
+                template:
+                    confirmation: "%fos_user.registration.confirmation.template%"
+                    resetting: "%fos_user.resetting.email.template%"
+                from_email:
+                    confirmation: "%fos_user.registration.confirmation.from_email%"
+                    resetting: "%fos_user.resetting.email.from_email%"
+
+    fos_user.doctrine_registry:
+        alias: doctrine

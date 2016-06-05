@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}SICAP GUAJIRA{% endblock %}</title>
+        <meta name="viewport" content="width=device-width">
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('ng-admin-custom/build/ng-admin-custom.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('ng-admin-custom/node_modules/roboto-fontface/css/roboto-fontface.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+        <div id="wrapper">
+            <nav id="header-nav" class="container-fluid navbar navbar-default navbar-static-top navbar-drapp animate" role="navigation">
+                <div class="container">
+                    <span>
+                    {% include "FOSUserBundle::layoutNavbar.html.twig" %}
+                    </span>
+                </div>
+            </nav>
+            {% if app.request.hasPreviousSession %}
+                {% for type, messages in app.session.flashbag.all() %}
+                <div class="container-fluid">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ type }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+            <div class="container-fluid" id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            © 2015 SICAP todo los derechos reservados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

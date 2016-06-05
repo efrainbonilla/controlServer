@@ -1,0 +1,18 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="container-fluid">
+    <div class="container">
+        <div class="row" style="margin-top:50px; margin-bottom:30px">
+       		<div class="alert alert-info">
+<p>
+{{ 'resetting.check_email'|trans({'%email%': email}) }}
+</p>
+        	</div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

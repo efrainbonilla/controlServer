@@ -1,0 +1,19 @@
+<div class="modal-header align-center">
+    <h3 class="modal-title">Guía de Traslado.</h3>
+</div>
+<div class="modal-body">
+	<div class="table-responsive">
+		<div ng-if="item.loading">
+			<h4 class="text-center">Cargando... Por favor espere.</h4>
+		</div>
+		<div ng-if="!item.loading">
+			<iframe style="display:none;"  id="show-view-reports" ng-src="{{ reportURL }}" onload="iframeload(this)" frameborder="0" allowfullscreen width="100%"></iframe>
+			<div ng-if="item.loadingIFrame">
+				<h4 class="text-center">Cargando PDF... Por favor espere.</h4>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="close()">Cerrar</button>
+</div>

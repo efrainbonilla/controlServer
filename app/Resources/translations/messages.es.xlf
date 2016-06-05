@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <!-- generic actions displayed on buttons and links -->
+            <trans-unit id="action.new">
+                <source>action.new</source>
+                <target>Crear %entity_name%</target>
+            </trans-unit>
+            <trans-unit id="action.show">
+                <source>action.show</source>
+                <target>Ver</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Modificar</target>
+            </trans-unit>
+            <trans-unit id="action.search">
+                <source>action.search</source>
+                <target>Buscar</target>
+            </trans-unit>
+            <trans-unit id="action.delete">
+                <source>action.delete</source>
+                <target>Borrar</target>
+            </trans-unit>
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Guardar cambios</target>
+            </trans-unit>
+            <trans-unit id="action.cancel">
+                <source>action.cancel</source>
+                <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="action.list">
+                <source>action.list</source>
+                <target>Volver al listado</target>
+            </trans-unit>
+            <trans-unit id="action.export">
+                <source>action.export</source>
+                <target>Exportar</target>
+            </trans-unit>
+            <trans-unit id="action.empty">
+                <source>action.empty</source>
+                <target></target>
+            </trans-unit>
+            <trans-unit id="action.detail">
+                <source>action.detail</source>
+                <target>Detalle</target>
+            </trans-unit>
+            <trans-unit id="action.submit">
+                <source>action.submit</source>
+                <target>Guardar</target>
+            </trans-unit>
+
+            <!-- page titles -->
+            <trans-unit id="new.page_title">
+                <source>new.page_title</source>
+                <target>Crear %entity_name%</target>
+            </trans-unit>
+            <trans-unit id="show.page_title">
+                <source>show.page_title</source>
+                <target>%entity_name% (#%entity_id%)</target>
+            </trans-unit>
+            <trans-unit id="edit.page_title">
+                <source>edit.page_title</source>
+                <target>Modificar %entity_name% (#%entity_id%)</target>
+            </trans-unit>
+            <trans-unit id="list.page_title">
+                <source>list.page_title</source>
+                <target>%entity_name%</target>
+            </trans-unit>
+            <trans-unit id="search.page_title">
+                <source>search.page_title</source>
+                <target><![CDATA[{0} No se han encontrado resultados|{1} <strong>1</strong> resultado|]1,Inf] <strong>%count%</strong> resultados]]></target>
+            </trans-unit>
+
+            <!-- 'search' view -->
+            <trans-unit id="search.no_results">
+                <source>search.no_results</source>
+                <target>No se han encontrado resultados.</target>
+            </trans-unit>
+
+            <!-- 'list' view -->
+            <trans-unit id="list.row_actions">
+                <source>list.row_actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+
+            <!-- paginator -->
+            <trans-unit id="paginator.first">
+                <source>paginator.first</source>
+                <target>Primera</target>
+            </trans-unit>
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>Anterior</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>Siguiente</target>
+            </trans-unit>
+            <trans-unit id="paginator.last">
+                <source>paginator.last</source>
+                <target>Última</target>
+            </trans-unit>
+            <trans-unit id="paginator.counter">
+                <source>paginator.counter</source>
+                <target><![CDATA[<strong>%start%</strong> - <strong>%end%</strong> de <strong>%results%</strong>]]></target>
+            </trans-unit>
+
+            <!-- misc. elements -->
+            <trans-unit id="header.close">
+                <source>header.close</source>
+                <target>Cerrar</target>
+            </trans-unit>
+            <trans-unit id="header.logged_in_as">
+                <source>header.logged_in_as</source>
+                <target>Conectado como</target>
+            </trans-unit>
+            <trans-unit id="delete_modal.title">
+                <source>delete_modal.title</source>
+                <target>¿Realmente quieres borrar este elemento?</target>
+            </trans-unit>
+            <trans-unit id="delete_modal.content">
+                <source>delete_modal.content</source>
+                <target>Esta acción no se puede deshacer.</target>
+            </trans-unit>
+
+
+            <!-- status -->
+            <trans-unit id="status.401">
+                <source>status.401</source>
+                <target>Error de credenciales.</target>
+            </trans-unit>
+
+            <trans-unit id="com_rif_fix">
+                <source>com_rif_fix</source>
+                <target> </target>
+            </trans-unit>
+            <trans-unit id="com_rif">
+                <source>com_rif</source>
+                <target>RIF</target>
+            </trans-unit>
+            <trans-unit id="com_nomb_estb">
+                <source>com_nomb_estb</source>
+                <target>Establecimiento</target>
+            </trans-unit>
+            <trans-unit id="com_num_ptte">
+                <source>com_num_ptte</source>
+                <target>N° Patente</target>
+            </trans-unit>
+            <trans-unit id="com_fechptte_ini">
+                <source>com_fechptte_ini</source>
+                <target>Fecha Renovación</target>
+            </trans-unit>
+            <trans-unit id="com_fechptte_fin">
+                <source>com_fechptte_fin</source>
+                <target>Fecha Vencimiento</target>
+            </trans-unit>
+            <trans-unit id="com_capit">
+                <source>com_capit</source>
+                <target>Capital</target>
+            </trans-unit>
+            <trans-unit id="com_num_lic">
+                <source>com_num_lic</source>
+                <target>N° Licencia</target>
+            </trans-unit>
+            <trans-unit id="com_telef">
+                <source>com_telef</source>
+                <target>Teléfono fijo</target>
+            </trans-unit>
+            <trans-unit id="com_act_ecnma">
+                <source>com_act_ecnma</source>
+                <target>Actividad económica</target>
+            </trans-unit>
+
+            <trans-unit id="pais_id">
+                <source>pais_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="edo_codi">
+                <source>edo_codi</source>
+                <target>Código estado</target>
+            </trans-unit>
+            <trans-unit id="muni_codi">
+                <source>muni_codi</source>
+                <target>Código municipio</target>
+            </trans-unit>
+            <trans-unit id="parroq_codi">
+                <source>parroq_codi</source>
+                <target>Código parroquia</target>
+            </trans-unit>
+            <trans-unit id="zona_id">
+                <source>zona_id</source>
+                <target>ID</target>
+            </trans-unit>
+
+            <trans-unit id="pais_nomb">
+                <source>pais_nomb</source>
+                <target>Pais</target>
+            </trans-unit>
+            <trans-unit id="edo_nomb">
+                <source>edo_nomb</source>
+                <target>Estado</target>
+            </trans-unit>
+            <trans-unit id="muni_nomb">
+                <source>muni_nomb</source>
+                <target>Municipio</target>
+            </trans-unit>
+            <trans-unit id="parroq_nomb">
+                <source>parroq_nomb</source>
+                <target>Parroquia</target>
+            </trans-unit>
+             <trans-unit id="zona_nomb">
+                <source>zona_nomb</source>
+                <target>Zona</target>
+            </trans-unit>
+
+             <trans-unit id="av_calle">
+                <source>av_calle</source>
+                <target>Avenida/Calle</target>
+            </trans-unit>
+             <trans-unit id="pto_ref">
+                <source>pto_ref</source>
+                <target>Punto de referencia</target>
+            </trans-unit>
+             <trans-unit id="com_nac_repres">
+                <source>com_nac_repres</source>
+                <target>Nacionalidad</target>
+            </trans-unit>
+             <trans-unit id="com_cedu_repres">
+                <source>com_cedu_repres</source>
+                <target>Cédula</target>
+            </trans-unit>
+             <trans-unit id="com_nomb_repres">
+                <source>com_nomb_repres</source>
+                <target>Nombres</target>
+            </trans-unit>
+            <trans-unit id="com_apell_repres">
+                <source>com_apell_repres</source>
+                <target>Apellidos</target>
+            </trans-unit>
+
+            <trans-unit id="com_prop_nac">
+                <source>com_prop_nac</source>
+                <target>Nacionalidad</target>
+            </trans-unit>
+             <trans-unit id="com_prop_cedu">
+                <source>com_prop_cedu</source>
+                <target>Cédula</target>
+            </trans-unit>
+             <trans-unit id="com_prop_nomb">
+                <source>com_prop_nomb</source>
+                <target>Nombres</target>
+            </trans-unit>
+            <trans-unit id="com_prop_apell">
+                <source>com_prop_apell</source>
+                <target>Apellidos</target>
+            </trans-unit>
+            <trans-unit id="com_prop_telef_cel">
+                <source>com_prop_telef_cel</source>
+                <target>Teléfono celular</target>
+            </trans-unit>
+            <trans-unit id="com_telef_fijo">
+                <source>com_telef_fijo</source>
+                <target>Teléfono fijo</target>
+            </trans-unit>
+
+             <!-- prodlimite -->
+            <trans-unit id="prodl_id">
+                <source>prodl_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="prodl_rif_estb">
+                <source>prodl_rif_estb</source>
+                <target>Comerció - RIF</target>
+            </trans-unit>
+            <trans-unit id="prodl_cant">
+                <source>prodl_cant</source>
+                <target>Cantidad</target>
+            </trans-unit>
+             <trans-unit id="prodl_status">
+                <source>prodl_status</source>
+                <target>Estatus</target>
+            </trans-unit>
+             <trans-unit id="prodl_ruta">
+                <source>prodl_ruta</source>
+                <target>Ruta</target>
+            </trans-unit>
+             <trans-unit id="prodl_prod_nomb">
+                <source>prodl_prod_nomb</source>
+                <target>Producto</target>
+            </trans-unit>
+            <trans-unit id="prodl_dnm_nomb">
+                <source>prodl_dnm_nomb</source>
+                <target>Denominación</target>
+            </trans-unit>
+            <trans-unit id="prodl_com_nomb">
+                <source>prodl_com_nomb</source>
+                <target>Comerció</target>
+            </trans-unit>
+
+
+             <!-- prodlimite -->
+            <trans-unit id="repres_id">
+                <source>repres_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="repres_nac">
+                <source>repres_nac</source>
+                <target>Nacionalidad</target>
+            </trans-unit>
+             <trans-unit id="repres_cedu">
+                <source>repres_cedu</source>
+                <target>Cédula</target>
+            </trans-unit>
+             <trans-unit id="repres_nomb">
+                <source>repres_nomb</source>
+                <target>Nombres</target>
+            </trans-unit>
+             <trans-unit id="repres_apell">
+                <source>repres_apell</source>
+                <target>Apellidos</target>
+            </trans-unit>
+            <trans-unit id="repres_telef_cel">
+                <source>repres_telef_cel</source>
+                <target>Teléfono celular</target>
+            </trans-unit>
+            <trans-unit id="com_repres">
+                <source>com_repres</source>
+                <target>Representante</target>
+            </trans-unit>
+
+            <!-- detail grid comercio -->
+            <trans-unit id="rif">
+                <source>rif</source>
+                <target>RIF</target>
+            </trans-unit>
+            <trans-unit id="estb">
+                <source>estb</source>
+                <target>Razon Social</target>
+            </trans-unit>
+            <trans-unit id="prop">
+                <source>prop</source>
+                <target>Propietario</target>
+            </trans-unit>
+            <trans-unit id="ptte">
+                <source>ptte</source>
+                <target>N° Patente</target>
+            </trans-unit>
+            <trans-unit id="lic">
+                <source>lic</source>
+                <target>N° Licencia</target>
+            </trans-unit>
+
+            <!-- categoria -->
+            <trans-unit id="cat_id">
+                <source>cat_id</source>
+                <target>ID</target>
+            </trans-unit>
+             <trans-unit id="cat_nomb">
+                <source>cat_nomb</source>
+                <target>Categoría</target>
+            </trans-unit>
+
+            <!-- user -->
+             <trans-unit id="first_name">
+                <source>first_name</source>
+                <target>Nombre</target>
+            </trans-unit>
+             <trans-unit id="last_name">
+                <source>last_name</source>
+                <target>Apellido</target>
+            </trans-unit>
+
+            <!-- grupo I-->
+            <trans-unit id="grup_id">
+                <source>grup_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="grup_nomb">
+                <source>grup_nomb</source>
+                <target>Grupo I</target>
+            </trans-unit>
+
+            <!-- grupo II-->
+            <trans-unit id="sgrup_id">
+                <source>sgrup_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="sgrup_nomb">
+                <source>sgrup_nomb</source>
+                <target>Grupo II</target>
+            </trans-unit>
+
+            <!-- medida -->
+            <trans-unit id="med_id">
+                <source>med_id</source>
+                <target>ID</target>
+            </trans-unit>
+             <trans-unit id="med_nomb">
+                <source>med_nomb</source>
+                <target>Medida</target>
+            </trans-unit>
+            <trans-unit id="med_simb">
+                <source>med_simb</source>
+                <target>Simbolo</target>
+            </trans-unit>
+
+            <!-- marca -->
+            <trans-unit id="marca_id">
+                <source>marca_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="marca_nomb">
+                <source>marca_nomb</source>
+                <target>Marca</target>
+            </trans-unit>
+
+            <!-- modelo -->
+            <trans-unit id="modelo_id">
+                <source>modelo_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="modelo_nomb">
+                <source>modelo_nomb</source>
+                <target>Modelo</target>
+            </trans-unit>
+            <trans-unit id="modelo_anio">
+                <source>modelo_anio</source>
+                <target>Año</target>
+            </trans-unit>
+
+            <!-- producto -->
+            <trans-unit id="prod_id">
+                <source>prod_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="prod_nomb">
+                <source>prod_nomb</source>
+                <target>Nombre</target>
+            </trans-unit>
+
+            <!-- registro diario -->
+            <trans-unit id="reg_id">
+                <source>reg_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="reg_nomb">
+                <source>reg_nomb</source>
+                <target>Nombre</target>
+            </trans-unit>
+
+            <!-- denominacion -->
+            <trans-unit id="dnm_id">
+                <source>dnm_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="dnm_nomb">
+                <source>dnm_nomb</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="dnm_desc">
+                <source>dnm_desc</source>
+                <target>Descripción</target>
+            </trans-unit>
+
+            <!-- tipo de commercio -->
+            <trans-unit id="tcom_id">
+                <source>tcom_id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="tcom_nomb">
+                <source>tcom_nomb</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="tcom_desc">
+                <source>tcom_desc</source>
+                <target>Descripción</target>
+            </trans-unit>
+
+            <!-- sada-->
+            <trans-unit id="com_sada_chk">
+                <source>com_sada_chk</source>
+                <target>Sada?</target>
+            </trans-unit>
+            <trans-unit id="com_sada_codi">
+                <source>com_sada_codi</source>
+                <target>Código SADA</target>
+            </trans-unit>
+
+            <!-- list commercio -->
+            <trans-unit id="list.comercio">
+                <source>list.comercio</source>
+                <target>Lista de comercio</target>
+            </trans-unit>
+            <trans-unit id="list.com_rif">
+                <source>list.com_rif</source>
+                <target>RIF</target>
+            </trans-unit>
+            <trans-unit id="list.com_nomb_estb">
+                <source>list.com_nomb_estb</source>
+                <target>Nombre comercio</target>
+            </trans-unit>
+            <trans-unit id="list.com_num_ptte">
+                <source>list.com_num_ptte</source>
+                <target>N° Patente</target>
+            </trans-unit>
+            <trans-unit id="list.com_num_lic">
+                <source>list.com_num_lic</source>
+                <target>N° Licencia</target>
+            </trans-unit>
+            <trans-unit id="list.com_act_ecnma">
+                <source>list.com_act_ecnma</source>
+                <target>Activdad económica</target>
+            </trans-unit>
+            <trans-unit id="list.com_nomb_repres">
+                <source>list.com_nomb_repres</source>
+                <target>Nombres</target>
+            </trans-unit>
+            <trans-unit id="list.com_apell_repres">
+                <source>list.com_apell_repres</source>
+                <target>Apellidos</target>
+            </trans-unit>
+            <trans-unit id="list.com_repres">
+                <source>list.com_repres</source>
+                <target>Representante</target>
+            </trans-unit>
+
+            <trans-unit id="list.com_prop">
+                <source>list.com_prop</source>
+                <target>Propietario</target>
+            </trans-unit>
+
+            <!-- show comercio -->
+             <trans-unit id="show.comercio">
+                <source>show.comercio</source>
+                <target>Detalles de comercio</target>
+            </trans-unit>
+            <trans-unit id="show.com_rif">
+                <source>show.com_rif</source>
+                <target>RIF</target>
+            </trans-unit>
+            <trans-unit id="show.com_nomb_estb">
+                <source>show.com_nomb_estb</source>
+                <target>Nombre comercio</target>
+            </trans-unit>
+            <trans-unit id="show.com_num_ptte">
+                <source>show.com_num_ptte</source>
+                <target>N° Patente</target>
+            </trans-unit>
+            <trans-unit id="show.com_num_lic">
+                <source>show.com_num_lic</source>
+                <target>N° Licencia</target>
+            </trans-unit>
+            <trans-unit id="show.com_telef_fijo">
+                <source>show.com_telef_fijo</source>
+                <target>Teléfono</target>
+            </trans-unit>
+            <trans-unit id="show.com_act_ecnma">
+                <source>show.com_act_ecnma</source>
+                <target>Activdad económica</target>
+            </trans-unit>
+            <trans-unit id="show.com_prop_nac">
+                <source>show.com_prop_nac</source>
+                <target>Nacionalidad</target>
+            </trans-unit>
+            <trans-unit id="show.com_prop_cedu">
+                <source>show.com_prop_cedu</source>
+                <target>Cédula</target>
+            </trans-unit>
+            <trans-unit id="show.com_prop_nomb">
+                <source>show.com_prop_nomb</source>
+                <target>Nombres</target>
+            </trans-unit>
+            <trans-unit id="show.com_prop_apell">
+                <source>show.com_prop_apell</source>
+                <target>Apellidos</target>
+            </trans-unit>
+            <trans-unit id="show.com_prop_telef_cel">
+                <source>show.com_prop_telef_cel</source>
+                <target>Teléfono celular</target>
+            </trans-unit>
+            <trans-unit id="show.com_prop">
+                <source>show.com_prop</source>
+                <target>Propietario</target>
+            </trans-unit>
+
+            <!-- action header -->
+            <trans-unit id="action.creation_view">
+                <source>action.creation_view</source>
+                <target>Crear nuevo</target>
+            </trans-unit>
+            <trans-unit id="action.edition_view">
+                <source>action.edition_view</source>
+                <target>Actualizar</target>
+            </trans-unit>
+            <trans-unit id="action.show_view">
+                <source>action.show_view</source>
+                <target>Detalle</target>
+            </trans-unit>
+            <trans-unit id="action.delete_view">
+                <source>action.delete_view</source>
+                <target>Borrar</target>
+            </trans-unit>
+            <trans-unit id="action.list_view">
+                <source>action.list_view</source>
+                <target>Lista de</target>
+            </trans-unit>
+
+
+            <!-- edition commercio -->
+            <trans-unit id="edition.comercio">
+                <source>edition.comercio</source>
+                <target>Actualizar comercio</target>
+            </trans-unit>
+
+            <!-- FormController.js -->
+            <trans-unit id="invalid form">
+                <source>invalid form</source>
+                <target>Formulario invalido.</target>
+            </trans-unit>
+            <trans-unit id="Changes successfully saved.">
+                <source>Changes successfully saved.</source>
+                <target>Cambios guardados exitosamente.</target>
+            </trans-unit>
+            <trans-unit id="Element successfully created.">
+                <source>Element successfully created.</source>
+                <target>Elemento creado exitosamente.</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="page-header">
+            <h1>
+                Perfil de usuario
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row form-horizontal" id="show-view">
+
+	<div class="col-lg-12 form-group">
+
+        <label class="col-sm-2 control-label">{{ 'profile.show.username'|trans }}</label>
+
+        <div class="col-sm-10 col-md-8 col-lg-7">
+            <span class="ng-binding">{{ user.username }}</span>
+        </div>
+
+    </div>
+    <div class="col-lg-12 form-group">
+
+        <label class="col-sm-2 control-label">{{ 'profile.show.email'|trans }}</label>
+
+        <div class="col-sm-10 col-md-8 col-lg-7">
+            <span class="ng-binding">{{ user.email }}</span>
+        </div>
+
+    </div>
+    <div class="col-lg-12 form-group">
+
+        <label class="col-sm-2 control-label">Nombre</label>
+
+        <div class="col-sm-10 col-md-8 col-lg-7">
+            <span class="ng-binding">{{ user.first_name }}</span>
+        </div>
+
+    </div>
+    <div class="col-lg-12 form-group">
+
+        <label class="col-sm-2 control-label">Apellido</label>
+
+        <div class="col-sm-10 col-md-8 col-lg-7">
+            <span class="ng-binding">{{ user.last_name }}</span>
+        </div>
+
+    </div>
+
+</div>

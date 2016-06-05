@@ -1,0 +1,75 @@
+<form name="vehiculoCreate.form" ng-submit="vehiculoCreate.submitEdition($event)">
+    <fieldset ng-disabled="isSaving">
+        <div class="modal-header align-center">
+            <h3 class="modal-title">Registrar Vehículo</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="marca">Marca *</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </span>
+                                <ui-select on-select="selMarca($item, $model)" ng-model="model.marca" ng-required="true" required="required" id="marca" name="marca">
+                                    <ui-select-match allow-clear="false" placeholder="Seleccione marca.">{{ $select.selected.label }}</ui-select-match>
+                                    <ui-select-choices repeat="item.value as item in marcas | filter: {label: $select.search} track by $index">
+                                        {{ item.label }}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="open($event, 'vehiculomarcas')" class="btn btn-default">
+                                        <span class="fa fa-truck"></span> Registrar
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="modelo">Modelo *</label>
+                            <div class="input-group">
+                                <ui-select ng-model="model.modelo" ng-required="true" required="required" id="modelo" name="modelo">
+                                    <ui-select-match allow-clear="false" placeholder="Seleccione modelo.">{{ $select.selected.label }}</ui-select-match>
+                                    <ui-select-choices repeat="item.value as item in modelos | filter: {label: $select.search} track by $index">
+                                        {{ item.label }}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="open($event, 'vehiculomodelos')" class="btn btn-default">
+                                        <span class="fa fa-truck"></span> Registrar
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="color">Color *</label>
+                            <input ng-model="model.color" type="text" class="form-control" id="color" placeholder="Ingrese color." ng-required="true" ng-minlength="1" ng-maxlength="50" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="placa">Placa *</label>
+                            <input ng-model="model.placa" type="text" class="form-control" id="placa" placeholder="Ingrese placa." ng-required="true" ng-minlength="4" ng-maxlength="20" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+            </span>
+            <button type="button" ng-click="close()" class="btn btn-default">Cerrar</button>
+        </div>
+    </fieldset>
+    <p ng-if="isSaving" class="bg-info text-center">Guardando...</p>
+</form>

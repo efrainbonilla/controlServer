@@ -1,0 +1,39 @@
+<form id="{{form_id}}" action="{{form_action}}" method="post" accept-charset="utf-8">
+    <fieldset id="" class="text-left" >
+        <div class="text-center"><h2>{{form_title}}</h2></div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <span id="{{form_status}}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="{{input_username_id}}" class="label-control col-md-12">{{label_username}}:</label>
+            <div class="col-md-12">
+                <input id="{{input_username_id}}" type="text" name="session[{{input_username_id}}]" value="" placeholder="{{label_username}}"  class="form-control" autocomplete="off">
+                <span class="{{input_username_id}}Failed">&nbsp;</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="{{input_password_id}}" class="label-control col-md-12">{{label_password}}: </label>
+            <div class="col-md-12">
+                <input  id="{{input_password_id}}" type="password" name="session[{{input_password_id}}]" value="" placeholder="{{label_password}}"  class="form-control" autocomplete="off">
+                <span class="{{input_password_id}}Failed">&nbsp;</span>
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="{{input_chklogout_id}}"  class="label-control col-md-12">
+                <input  id="{{input_chklogout_id}}" type="checkbox" class="parent" name="session[{{input_chklogout_id}}]" value="off">
+                {{label_chklogout}}</label>
+                <!-- <span class="{{input_chklogout_id}}Failed">&nbsp;</span> -->
+        </div>
+        <div class="form-group">
+            <div class="col-md-7">
+                <span class="reset"><a href="{{lostpassword_url}}" title="">{{lostpassword}} ›</a></span>
+            </div>
+            <div class="col-md-5 text-right">
+                <input type="hidden" name="action" value="{{action}}" />
+                <input type="submit" name="" value="{{input_send_value}}" class="btn btn-primary" >
+            </div>
+        </div>
+    </fieldset>
+</form>

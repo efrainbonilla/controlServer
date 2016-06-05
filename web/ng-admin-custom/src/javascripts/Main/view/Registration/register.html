@@ -1,0 +1,86 @@
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Registrarse</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-danger" ng-if="errorMessage">
+                             {{ errorMessage }}
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form name="registerController.form" role="form" ng-submit="registerController.submitCreation($event, user)">
+                                    <div class="form-group">
+                                        <label for="username" class="control-label requerid">
+                                            {{ 'form.username'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="text" id="username" ng-model="user.username" class="form-control" required>
+                                        <span ng-if="msg.username" class="help-inline">{{ msg.username }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="control-label requerid">
+                                            {{ 'form.email'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="email" id="email" ng-model="user.email" class="form-control" required>
+                                        <span ng-if="msg.email" class="help-inline">{{ msg.email }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="plainPassword.first" class="control-label requerid">
+                                            {{ 'form.password'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="password" id="plainPassword.fist" ng-model="user.plainPassword.first" class="form-control" required>
+                                        <span ng-if="msg.plainPassword.first" class="help-inline">{{ msg.plainPassword.first }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="plainPassword.second" class="control-label requerid">
+                                            {{ 'form.password_confirmation'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="password" id="plainPassword.second" ng-model="user.plainPassword.second" class="form-control" required>
+                                        <span ng-if="msg.plainPassword.second" class="help-inline">{{ msg.plainPassword.second }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName" class="control-label requerid">
+                                            Nombre <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="text" id="firstName" ng-model="user.firstName" class="form-control" required>
+                                        <span ng-if="msg.firstName" class="help-inline">{{ msg.firstName }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName" class="control-label requerid">
+                                            Apellido <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="text" id="lastName" ng-model="user.lastName" class="form-control" required>
+                                        <span ng-if="msg.lastName" class="help-inline">{{ msg.lastName }}</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastname" class="control-label requerid">
+                                            Genero <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <ui-select ng-model="user.gender" ng-required="true" id="gender" name="gender">
+                                            <ui-select-match allow-clear="false" placeholder="SELECCIONE GENERO">{{ $select.selected.label }}</ui-select-match>
+                                            <ui-select-choices repeat="item.value as item in genders | filter: {label: $select.search} track by $index">
+                                                {{ item.label }}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                        <span ng-if="msg.gender" class="help-inline">{{msg.gender}}</span>
+                                    </div>
+
+                                    <button class="btn btn-lg btn-success btn-block" ng-click="registerController.submitCreation($event, user)">{{ 'registration.submit'|trans }} </button>
+                                    <br>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="text-center">
+                            <a href="#/login" title="">Ya tienes una cuenta?</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

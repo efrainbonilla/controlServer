@@ -1,0 +1,324 @@
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="page-header">
+            <h1>
+                Reportes
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="bs-callout bs-callout-info">
+    <div class="page-header">
+        <h4>OPCIONES DE FORMULARIO <small></small></h4>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ui-select ng-model="model.option" on-select="selOpcion($item, $model)" ng-required="true" id="report" name="report">
+                <ui-select-match allow-clear="false" placeholder="Seleccione una opción para mostrar formulario de reporte.">{{ $select.selected.label }}</ui-select-match>
+                <ui-select-choices repeat="item.value as item in opciones | filter: {label: $select.search} track by $index">
+                    {{ item.label }}
+                </ui-select-choices>
+            </ui-select>
+        </div>
+    </div>
+</div>
+<div ng-if="model.option=='a'" class="bs-callout bs-callout-info">
+    <div class="page-header">
+        <h4>OPCIONES DE DOCUMENTO <small></small></h4>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="input-group">
+                        <ui-select ng-model="model.report" on-select="selOpcionDocumento($item, $model)" ng-init="reportesController.$scope.selectDocumento = $select"  ng-required="true" id="report" name="report">
+                            <ui-select-match allow-clear="false" placeholder="Seleccione una opción.">{{ $select.selected.label }}</ui-select-match>
+                            <ui-select-choices repeat="item.value as item in reportes['simple'] | filter: {label: $select.search} track by $index">
+                                {{ item.label }}
+                            </ui-select-choices>
+                        </ui-select>
+                        <div class="input-group-addon" style="padding:6px">Formato </div>
+                            <ui-select ng-model="model.format" on-select="selFormat($item, $model, 'between')" ng-init="reportesController.$scope.selectFormat = $select"  ng-required="true" id="format" name="format">
+                                <ui-select-match allow-clear="false" placeholder="Seleccione formato.">{{ $select.selected.label }}</ui-select-match>
+                                <ui-select-choices group-by="'group'" repeat="item.value as item in formats['simple'] | filter: {label: $select.search} track by $index">
+                                    {{ item.label }}
+                                </ui-select-choices>
+                            </ui-select>
+                        <span class="input-group-btn">
+                            <button type="button" ng-click="submitQuery($event, model)" class="btn btn-primary">
+                                {{ submitBtnName }}
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="model.option=='b'" class="bs-callout bs-callout-warning">
+    <div class="bs-callout bs-callout-info">
+        <div class="page-header">
+            <h4>FILTRO POR FECHA  <small></small></h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="model.optionDate" value="del" ng-checked="true">
+                                        Del
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="del">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <select class="form-control" ng-model="model.dateFormat" ng-options="f.label for f in delChoices track by f.value">
+                                                <option value="" ng-if="false"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="model.optionDate" value="month">
+                                        Por mes
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="month" disabled>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <select class="form-control" ng-model="model.dateFormatMonth" ng-options="f.label for f in monthsChoices track by f.value">
+                                                <option value="" ng-if="false"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                             <select class="form-control" ng-model="model.dateFormatYear" ng-options="f.label for f in yearsChoices track by f.value">
+                                                <option value="" ng-if="false"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="model.optionDate" value="between">
+                                        Por Rango
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="between" disabled>
+                                    <style>
+                                      .full button span {
+                                        background-color: limegreen;
+                                        border-radius: 32px;
+                                        color: black;
+                                      }
+                                      .partially button span {
+                                        background-color: orange;
+                                        border-radius: 32px;
+                                        color: black;
+                                      }
+                                    </style>
+                                    <div class="row" ng-controller="BetweenController">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            Desde
+                                            <p class="input-group">
+                                              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="model.from" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                              <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                              </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            Hasta
+                                            <p class="input-group">
+                                              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="model.to" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                                              <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                              </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="page-header">
+            <h4>OPCIONES DE FILTRO <small></small></h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="model.optionGral" value="all" ng-checked="true">
+                                        General
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="all">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <select class="form-control" ng-model="model.all" ng-options="f.label for f in alls track by f.value">
+                                                <option value="" ng-if="false"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="model.optionGral" value="prod">
+                                        Por producto
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="prod" disabled>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <ui-select ui-select-required multiple ng-model="model.prod" ng-required="true" required="required" id="prod" name="prod">
+                                                <ui-select-match placeholder="Selecione producto(s).">{{ $item.label }}</ui-select-match>
+                                                <ui-select-choices repeat="item.value as item in productos | filter: {label: $select.search}">
+                                                    {{ item.label }}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" ng-model="model.optionGral" value="rubro">
+                                        Por rubro
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <fieldset id="rubro" disabled>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <ui-select ui-select-required multiple ng-model="model.rubro" ng-required="true" required="required" id="rubro" name="rubro">
+                                                <ui-select-match placeholder="Selecione rubro(s).">{{ $item.label }}</ui-select-match>
+                                                <ui-select-choices repeat="item.value as item in rubros | filter: {label: $select.search}">
+                                                    {{ item.label }}
+                                                </ui-select-choices>
+                                            </ui-select>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="bs-callout bs-callout-info">
+        <div class="page-header">
+            <h4>DELIMITAR POR EMPRESA(S) <small>Opcional.</small></h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <ui-select ui-select-required multiple ng-model="model.ids" ng-required="true" required="required" id="mercantil" name="mercantil">
+                            <ui-select-match placeholder="Selecione empresa(s).">{{ $item.label }}</ui-select-match>
+                            <ui-select-choices repeat="item.value as item in comerciantes | filter: {label: $select.search}">
+                                {{ item.label }}
+                            </ui-select-choices>
+                        </ui-select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bs-callout bs-callout-info">
+        <div class="page-header">
+            <h4>OPCIONES DE DOCUMENTO <small></small></h4>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="input-group">
+                            <ui-select ng-model="model.report" on-select="selOpcionDocumento($item, $model)" ng-init="reportesController.$scope.selectDocumento = $select"  ng-required="true" id="report" name="report">
+                                <ui-select-match allow-clear="false" placeholder="Seleccione una opción.">{{ $select.selected.label }}</ui-select-match>
+                                <ui-select-choices repeat="item.value as item in reportes['between'] | filter: {label: $select.search} track by $index">
+                                    {{ item.label }}
+                                </ui-select-choices>
+                            </ui-select>
+                            <div class="input-group-addon" style="padding:6px">Formato </div>
+                            <ui-select ng-model="model.format" on-select="selFormat($item, $model, 'between')" ng-init="reportesController.$scope.selectFormat = $select"  ng-required="true" id="format" name="format">
+                                <ui-select-match allow-clear="false" placeholder="Seleccione formato.">{{ $select.selected.label }}</ui-select-match>
+                                <ui-select-choices group-by="'group'" repeat="item.value as item in formats['between'] | filter: {label: $select.search} track by $index">
+                                    {{ item.label }}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="submitQuery($event, model)" class="btn btn-primary">
+                                    {{ submitBtnName }}
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-if="option.loading">
+    <div class="jumbotron">
+      <p class="text-center">Cargando... Por favor espere.</p>
+    </div>
+</div>
+
+<div class="iframe-container">
+    <iframe style="display: none;" id="show-view-reports" ng-src="{{ reportURL }}" frameborder="0" allowfullscreen width="100%"></iframe>
+    <div ng-if="option.loadingIFrame">
+        <div class="jumbotron">
+            <p class="text-center">Cargando PDF... Por favor espere.</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<form name="personaCreate.form" ng-submit="personaCreate.submitEdition($event)">
+    <fieldset ng-disabled="isSaving">
+        <div class="modal-header align-center">
+            <h3 class="modal-title">Registrar nueva persona</h3>
+        </div>
+        <div class="modal-body">
+            <div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="naci">Tipo de documento *</label>
+                            <ui-select ng-model="model.naci" ng-required="true" id="naci" name="naci">
+                                <ui-select-match allow-clear="false" placeholder="Seleccione tipo.">{{ $select.selected.label }}</ui-select-match>
+                                <ui-select-choices group-by="'mag'" repeat="item.value as item in nacs | filter: {label: $select.search} track by $index">
+                                    {{ item.label }}
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="cedu">N° de documento *</label>
+                            <input ng-model="model.cedu" type="text" class="form-control" id="cedu" placeholder="Ingrese N° de documento." ng-required="true"  ng-minlength="5" ng-maxlength="12" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="nomb">Nombre *</label>
+                            <input ng-model="model.nomb" type="text" class="form-control" id="nomb" placeholder="Ingrese Nombres." ng-required="true" ng-minlength="1" ng-maxlength="100" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="apell">Apellido *</label>
+                            <input ng-model="model.apell" type="text" class="form-control" id="apell" placeholder="Ingrese Apellidos." ng-required="true" ng-minlength="1" ng-maxlength="100" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="telf">Teléfono *</label>
+                            <input ng-model="model.telf" type="text" class="form-control" id="telf" placeholder="Ejm. 0412******0" ng-required="true" ng-minlength="11" ng-maxlength="11" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="form-group">
+                            <label class="control-label" for="correo">Correo</label>
+                            <input ng-model="model.correo" type="email" class="form-control" id="correo" placeholder="Ejm. nombreapellido@gmail.com" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span>
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+            </span>
+            <button type="button" ng-click="close()" class="btn btn-default">Cerrar</button>
+        </div>
+    </fieldset>
+    <p ng-if="isSaving" class="bg-info text-center">Guardando...</p>
+</form>

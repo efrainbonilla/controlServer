@@ -1,0 +1,237 @@
+<!-- <div class="modal-header">
+    <h3 class="modal-title">Detalle de comercio</h3>
+</div> -->
+<div class="modal-body">
+	<div class="table-responsive" ng-repeat="item in items">
+		<div ng-if="item.loading">
+			<h4 class="text-center">Cargando... Por favor espere.</h4>
+		</div>
+		<div id="show-view-detail">
+	    <table ng-if="!item.loading" class="table table-bordered">
+	        <tbody>
+	        	<tr>
+	                <th colspan="5">DATOS DE COMERCIO O ESTABLECIMIENTO</th>
+	            </tr>
+	            <tr>
+	                <th>RIF</th>
+	                <th colspan="2">ESTABLECIMIENTO</th>
+	                <th>N° PATENTE</th>
+	                <th>N° LICENCIA</th>
+	            </tr>
+	            <tr>
+	                <td>{{ item.com_rif }}</td>
+	                <td colspan="2">{{ item.com_nomb_estb }}</td>
+	                <td>{{ item.com_num_ptte }}</td>
+	                <td>{{ item.com_num_lic }}</td>
+	            </tr>
+	            <tr>
+	                <th  colspan="3">PROPIETARIO</th>
+	                <th>TELÉFONO MOVIL</th>
+	                <th>TELÉFONO FIJO</th>
+	            </tr>
+	            <tr>
+	                <td colspan="3">{{ item.com_prop }}</td>
+	                <td>{{ item.com_prop_telef_cel }}</td>
+	                <td>{{ item.com_telef_fijo }}</td>
+	            </tr>
+	            <tr>
+	                <th colspan="5">DIRECCIÓN</th>
+	            </tr>
+	            <tr>
+	                <th colspan="2">ESTADO</th>
+	                <th>MUNICIPIO</th>
+	                <th colspan="2">PARROQUIA</th>
+	            </tr>
+	            <tr>
+	                <td colspan="2">{{ item.direccion.edo.edo_nomb }}</td>
+	                <td>{{ item.direccion.muni.muni_nomb }}</td>
+	                <td colspan="2">{{ item.direccion.parroq.parroq_nomb }}</td>
+	            </tr>
+	            <tr>
+	                <th colspan="2">ZONA/SECTOR</th>
+	                <th>AVENIDA/CALLE</th>
+	                <th colspan="2">PUNTO DE REFERENCIA</th>
+	            </tr>
+	            <tr>
+	                <td colspan="2">{{ item.direccion.zona.zona_nomb }}</td>
+	                <td>{{ item.direccion.av_calle }}</td>
+	                <td colspan="2">{{ item.direccion.pto_ref }}</td>
+	            </tr>
+
+	            <tr>
+	                <th colspan="5">REPRESENTANTES</th>
+	            </tr>
+	            <tr>
+	                <th colspan="1">NACIONALIDAD</th>
+	                <th colspan="1">CÉDULA</th>
+	                <th colspan="2">NOMBRES Y APELLIDOS</th>
+	                <th colspan="1">TELÉFONO CELULAR</th>
+	            </tr>
+	            <tr ng-if="item.repres.length > 0" ng-repeat="itemb in item.repres">
+	                <td colspan="1">{{ itemb.repres_nac }}</td>
+	                <td colspan="1">{{ itemb.repres_cedu }}</td>
+	                <td colspan="2">{{ itemb.repres }}</td>
+	                <td colspan="1">{{ itemb.repres_telef_cel }}</td>
+	            </tr>
+	            <tr ng-if="item.repres.length == 0">
+	                <td colspan="5" class="text-center">SIN REPRESENTANTES</td>
+			    </tr>
+	        </tbody>
+	    </table>
+	    <table ng-if="!item.loading" class="table table-bordered">
+	        <tbody>
+	            <tr>
+	                <th colspan="5">TIPO DE COMERCIO</th>
+	            </tr>
+	            <tr>
+	                <th colspan="2">TIPO</th>
+	                <th colspan="5">DESCRIPCIÓN</th>
+	            </tr>
+	            <tr ng-repeat="itemd in item.mcom">
+	                <td colspan="2">{{ itemd.tcom.tcom_nomb }}</td>
+	                <td colspan="3">{{ itemd.tcom.tcom_desc }}</td>
+	            </tr>
+	            <tr ng-if="item.mcom.length == 0">
+	                <td colspan="5" class="text-center">-</td>
+			    </tr>
+	        </tbody>
+	    </table>
+	    <table ng-if="!item.loading" class="table table-bordered">
+	        <tbody>
+	            <tr>
+	                <th colspan="5">PRODUCTOS AUTORIZADOS</th>
+	            </tr>
+	            <tr>
+	                <th colspan="1">PRODUCTO</th>
+	                <th colspan="1">CANTIDAD</th>
+	                <th colspan="1">DENOMINACIÓN</th>
+	                <th colspan="1">ESTATUS</th>
+	                <th colspan="1">RUTA</th>
+	            </tr>
+	            <tr ng-repeat="itemc in item.prod">
+	                <td colspan="1">{{ itemc.prod.prod_nomb }}</td>
+	                <td colspan="1">{{ itemc.prodl_cant }}</td>
+	                <td colspan="1">{{ itemc.med.med_nomb }}</td>
+	                <td colspan="1">{{ itemc.prodl_ruta }}</td>
+	                <td colspan="1">{{ itemc.prodl_status }}</td>
+	            </tr>
+	            <tr ng-if="item.prod.length == 0">
+	                <td colspan="5" class="text-center">SIN PRODUCTOS</td>
+			    </tr>
+	        </tbody>
+	    </table>
+	    <table ng-if="!item.loading" class="table table-bordered" ng-repeat="itemda in item.reg">
+	        <tbody>
+	            <tr ng-if="$first">
+	                <th colspan="5">HISTORIAL DE REGISTRO</th>
+	            </tr>
+	            <tr>
+	                <th colspan="1">CÓDIGO</th>
+	                <th colspan="2">FECHA</th>
+	                <th colspan="2">HORA</th>
+	            </tr>
+	            <tr>
+	                <td colspan="1">{{itemda.reg_id}}</td>
+	                <td colspan="2">{{itemda.reg_fech | amDateFormat:'LL'}}</td>
+	                <td colspan="2">{{itemda.reg_fech | amDateFormat: 'h:mm:ss a'}}</td>
+	            </tr>
+	            <tr>
+	            	<td colspan="5">
+		            	<table class="table table-bordered" ng-repeat="iteme in itemda.fact">
+		            		<tbody>
+		            			<tr ng-if="$first">
+	                				<th colspan="5"> FACTURAS </th>
+		            			</tr>
+					            <tr>
+					                <th colspan="1"> N° FACTURA </th>
+					                <th colspan="1"> TOTAL </th>
+					                <th colspan="3">OBSERVACIÓN</th>
+					            </tr>
+					            <tr>
+					                <td colspan="1">{{iteme.fact_codi}}</td>
+					                <td colspan="1">{{iteme.fact_total | currency:"Bs.F "}}</td>
+					                <td colspan="3">{{iteme.fact_obs}}</td>
+					            </tr>
+					            <tr>
+					                <th colspan="1">PRODUCTOS</th>
+					                <td colspan="4">
+					                	<table class="table table-bordered">
+					                		<tbody>
+					                			<tr ng-if="$first">
+					                				<th colspan="2">PRODUCTO</th>
+					                				<th>PRESTACIÓN PRODUCTO</th>
+					                				<th>CANTIDAD</th>
+					                				<th>UNIDAD DE MEDIDA</th>
+					                			</tr>
+					                			<tr ng-repeat="itemf in iteme.fact_prod">
+					                				<td colspan="2">{{itemf.prod.prod_nomb}}</td>
+					                				<td>{{itemf.prestc_num}} {{itemf.prestc_med.med_nomb}}</td>
+					                				<td>{{itemf.fprod_cant}}</td>
+					                				<td>{{itemf.med.med_nomb}}</td>
+					                			</tr>
+					                		</tbody>
+					                	</table>
+					                </td>
+					            </tr>
+		            		</tbody>
+		            	</table>
+	            	</td>
+	            </tr>
+
+	            <tr>
+	            	<td colspan="5">
+		            	<table class="table table-bordered" ng-repeat="itemg in itemda.transp">
+		            		<tbody>
+		            			<tr ng-if="$first">
+	                				<th colspan="5"> TRANSPORTES </th>
+		            			</tr>
+		            			<tr>
+	                				<th colspan="5"> VEHICULO </th>
+		            			</tr>
+					            <tr>
+					                <th colspan="1">PLACA</th>
+					                <th colspan="1">MARCA</th>
+					                <th colspan="1">MODELO</th>
+					                <th colspan="2">DESCRIPCIÓN</th>
+					            </tr>
+					            <tr>
+					                <td colspan="1">{{itemg.transp_placa}}</td>
+					                <td colspan="1">{{itemg.marca.marca_nomb}}</td>
+					                <td colspan="1">{{itemg.modelo.modelo_nomb}}</td>
+					                <td colspan="2">{{itemg.transp_desc}}</td>
+					            </tr>
+					            <tr>
+	                				<th colspan="5"> CONDUCTOR </th>
+		            			</tr>
+		            			<tr>
+					                <th colspan="1">CÉDULA</th>
+					                <th colspan="1">NOMBRES</th>
+					                <th colspan="1">APELLIDOS</th>
+					                <th colspan="2">LICENCIA</th>
+					            </tr>
+					            <tr>
+					                <td colspan="1">{{itemg.chof_cedu}}</td>
+					                <td colspan="1">{{itemg.chof_nomb}}</td>
+					                <td colspan="1">{{itemg.chof_apell}}</td>
+					                <td colspan="2">{{itemg.chof_num_lic}}</td>
+					            </tr>
+		            		</tbody>
+		            	</table>
+	            	</td>
+	            </tr>
+	            <tr>
+	                <th colspan="2">REGISTRADO POR USUARIO</th>
+	                <td colspan="3">{{itemda.user.username}}</td>
+	            </tr>
+
+	        </tbody>
+	    </table>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<a ng-if="!items[0].loading" class="btn btn-default" ng-click="open($event, 'show-view-detail', 'REPORTE GENERAL')" ng-controller="HandlePrintController">
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>&nbsp;<span class="hidden-xs ng-binding">Imprimir</span>
+    </a>
+    <button class="btn btn-warning" ng-click="close()">Cerrar</button>
+</div>

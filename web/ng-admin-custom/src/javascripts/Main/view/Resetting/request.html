@@ -1,0 +1,34 @@
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-lg-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Recordar contraseña</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="alert alert-danger" ng-if="errorMessage">
+                             {{ 'resetting.request.invalid_username'|trans: {'username': invalid_username} }}
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                <form name="resettingController.form" role="form" ng-submit="resettingController.submitEdition($event, user)">
+                                    <div class="form-group">
+                                        <label for="username" class="control-label requerid">
+                                            {{ 'resetting.request.username'|trans }} <span class="requerid">&nbsp;*</span>&nbsp;
+                                        </label>
+                                        <input type="text" id="username" ng-model="user.username" class="form-control" required>
+                                        <span ng-if="msg.username" class="help-inline">{{ msg.username }}</span>
+                                    </div>
+                                    <button class="btn btn-lg btn-success btn-block" ng-click="resettingController.submitEdition($event, user)">{{ 'resetting.request.submit'|trans }}</button>
+                                    <br>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

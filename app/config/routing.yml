@@ -1,0 +1,195 @@
+App_MarcaProducto_api:
+    resource: "@AppBundle/Controller/MarcaProductoRESTController.php"
+    type:   rest
+    prefix:   /api
+
+App_ClienteProducto_api:
+        resource: "@AppBundle/Controller/ClienteProductoRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_GuiaComerciante_api:
+        resource: "@AppBundle/Controller/GuiaComercianteRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_ProductoMarca_api:
+        resource: "@AppBundle/Controller/ProductoMarcaRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_ProductoRubro_api:
+        resource: "@AppBundle/Controller/ProductoRubroRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_Rubro_api:
+        resource: "@AppBundle/Controller/RubroRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_TransporteCliente_api:
+        resource: "@AppBundle/Controller/TransporteClienteRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_Vehiculo_api:
+        resource: "@AppBundle/Controller/VehiculoRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_VehiculoMarca_api:
+        resource: "@AppBundle/Controller/VehiculoMarcaRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_VehiculoModelo_api:
+        resource: "@AppBundle/Controller/VehiculoModeloRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_VehiculoTransporte_api:
+        resource: "@AppBundle/Controller/VehiculoTransporteRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_Xmagnitud_api:
+        resource: "@AppBundle/Controller/XmagnitudRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_Xmedida_api:
+        resource: "@AppBundle/Controller/XmedidaRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_Xproducto_api:
+        resource: "@AppBundle/Controller/XproductoRESTController.php"
+        type:   rest
+        prefix:   /api
+
+App_TipoMercantil_api:
+    resource: "@AppBundle/Controller/TipoMercantilRESTController.php"
+    type:   rest
+    prefix:   /api
+
+App_MercantilRepresentante_api:
+    resource: "@AppBundle/Controller/MercantilRepresentanteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+App_MercantilPropietario_api:
+    resource: "@AppBundle/Controller/MercantilPropietarioRESTController.php"
+    type:   rest
+    prefix:   /api
+
+App_MercantilDireccion_api:
+    resource: "@AppBundle/Controller/MercantilDireccionRESTController.php"
+    type:   rest
+    prefix:   /api
+
+App_Mercantil_api:
+    resource: "@AppBundle/Controller/MercantilRESTController.php"
+    type:   rest
+    prefix:   /api
+
+App_Persona_api:
+    resource: "@AppBundle/Controller/PersonaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_utility_api:
+    resource: "@AppBundle/Controller/UtilityRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_zona_api:
+    resource: "@AppBundle/Controller/ZonaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_parroquia_api:
+    resource: "@AppBundle/Controller/ParroquiaRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_municipio_api:
+    resource: "@AppBundle/Controller/MunicipioRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_estado_api:
+    resource: "@AppBundle/Controller/EstadoRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_pais_api:
+    resource: "@AppBundle/Controller/PaisRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_user_api:
+    resource: "@AppBundle/Controller/UserRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_report:
+    type:     annotation
+    resource: "@AppBundle/Controller/ConsultasREPORTController.php"
+
+app_reporte_api:
+    resource: "@AppBundle/Controller/ReporteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app:
+    resource: "@AppBundle/Controller/DefaultController.php"
+    type:     annotation
+
+
+app_ajuste_reporte_api:
+    resource: "@AppBundle/Controller/AjusteReporteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_ajuste_api:
+    resource: "@AppBundle/Controller/AjusteRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_resetting_api:
+    resource: "@AppBundle/Controller/ResettingRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_registration_api:
+    resource: "@AppBundle/Controller/RegistrationRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_change_password_api:
+    resource: "@AppBundle/Controller/ChangePasswordRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_profile_api:
+    resource: "@AppBundle/Controller/ProfileRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_api:
+    resource: routing_api.yml
+    prefix: /api
+
+#FOS User routing
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# Doc Api
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /doc
+
+# translation
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"

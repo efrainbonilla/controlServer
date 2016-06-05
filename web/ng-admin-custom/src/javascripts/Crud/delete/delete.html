@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="page-header">
+            <ma-view-actions override="::deleteController.actions" entry="::entry" entity="::deleteController.entity">
+                <ma-list-button ng-if="::entity.listView().enabled" label="{{ 'action.list' | trans }}" entity="::entity"></ma-list-button>
+            </ma-view-actions>
+            <h1 compile="::deleteController.title">
+                {{'action.delete' | trans }} {{ ::deleteController.view.entity.name() | humanize:true | singularize }}  #{{ ::entry.identifierValue }}
+            </h1>
+            <p class="lead" ng-if="::deleteController.description" compile="::deleteController.description">{{ ::deleteController.description }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="delete-view">
+    <div class="col-lg-12">
+        <p>{{ 'delete_modal.title' | trans }}</p>
+        <button class="btn btn-danger" ng-click="deleteController.deleteOne()">SI</button>
+        <button class="btn btn-default" ng-click="deleteController.back()">NO</button>
+    </div>
+</div>

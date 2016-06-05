@@ -1,0 +1,124 @@
+<form name="productoMarca.form" ng-submit="productoMarca.submitEdition($event)">
+    <fieldset ng-disabled="isSaving">
+    	<div class="modal-header align-center">
+            <h3 ng-if="formName=='xproductos'" class="modal-title">Registrar producto</h3>
+            <h3 ng-if="formName=='productomarcas'" class="modal-title">Registrar marca de producto</h3>
+    	    <h3 ng-if="formName=='xmedidas'" class="modal-title">Registrar medida</h3>
+    	</div>
+    	<div class="modal-body">
+            <div>
+                <div ng-if="formName=='xproductos'" class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label" for="producto">Producto *</label>
+                            <input ng-model="model.nomb" type="text" class="form-control" id="producto" placeholder="Ingrese producto." ng-required="true" ng-minlength="2" ng-maxlength="50" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label class="control-label" for="rubro">Rubros *</label>
+                        <div class="input-group">
+                            <ui-select ui-select-required multiple ng-model="model.rubro" ng-required="true" required="required" id="rubro" name="rubro">
+                                <ui-select-match placeholder="Selecione a que rubros pertenece el producto.">{{ $item.label }}</ui-select-match>
+                                <ui-select-choices repeat="item.value as item in rubros | filter: {label: $select.search}">
+                                    {{ item.label }}
+                                </ui-select-choices>
+                            </ui-select>
+                            <span class="input-group-btn">
+                                <button type="button" ng-click="open($event, 'rubros')" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="formName=='productomarcas'" class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label" for="producto">Producto *</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="refeshProducto($event)" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </span>
+                                <ui-select on-select="selProducto($item, $model)" ng-model="model.producto" ng-required="true" required="required" id="producto" name="producto">
+                                    <ui-select-match allow-clear="false" placeholder="Seleccione producto.">{{ $select.selected.label }}</ui-select-match>
+                                    <ui-select-choices repeat="item.value as item in productos | filter: {label: $select.search} track by $index">
+                                        {{ item.label }}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <label class="control-label" for="marca">Lista de marca de producto</label>
+                        <div ng-if="loading">
+                            <p style="margin: 5px;">Cargando marcas del producto seleccionado.</p>
+                        </div>
+                        <div ng-if="!loading">
+                            <span class="label label-default" style="margin: 5px;" ng-repeat="(key, value) in productomarcas">{{value.label}}</span>
+                            <p style="margin: 5px;" ng-if="productomarcas.length == 0">SIN MARCAS</p>
+                        </div>
+                        <p>&nbsp;</p>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <fieldset ng-disabled="!active">
+                            <label class="control-label" for="marca">Nueva marca de producto *</label>
+                            <div class="input-group">
+                                <ui-select ui-select-required multiple ng-model="model._marca" ng-required="true" required="required" id="marca" name="marca">
+                                    <ui-select-match placeholder="Selecione marcas del producto.">{{ $item.label }}</ui-select-match>
+                                    <ui-select-choices repeat="item.value as item in _marcaproductos | filter: {label: $select.search}">
+                                        {{ item.label }}
+                                    </ui-select-choices>
+                                </ui-select>
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="open($event, 'marcaproductos')" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div ng-if="formName=='xmedidas'" class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label" for="magnitud">Magnitud *</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <button type="button" ng-click="refeshMagnitud($event)" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-refresh"></span>
+                                    </button>
+                                </span>
+                                <ui-select on-select="selMagnitud($item, $model)" ng-model="model.magnitud" ng-required="true" required="required" id="magnitud" name="magnitud">
+                                    <ui-select-match allow-clear="false" placeholder="Seleccione magnitud.">{{ $select.selected.label }}</ui-select-match>
+                                    <ui-select-choices repeat="item.value as item in magnituds | filter: {label: $select.search} track by $index">
+                                        {{ item.label }}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group">
+                            <label class="control-label" for="medida">unidad de medida *</label>
+                            <input ng-model="model.nomb" type="text" class="form-control" id="medida" placeholder="Ingrese medida." ng-required="true" ng-minlength="1" ng-maxlength="50" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+            </div>
+    	</div>
+    	<div class="modal-footer">
+            <fieldset ng-disabled="!active">
+                <span>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+                </span>
+        	    <button type="button" ng-click="close()" class="btn btn-default">Cerrar</button>
+            </fieldset>
+    	</div>
+    </fieldset>
+    <p ng-if="isSaving" class="bg-info text-center">Guardando...</p>
+</form>

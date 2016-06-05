@@ -1,0 +1,30 @@
+<nav class="pagination-bar">
+
+    <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+             <ma-datagrid-limit
+                page="{{ paginationCtrl.page }}"
+                total-items="{{ paginationCtrl.totalItems }}">
+            </ma-datagrid-limit>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+            <div class="total" ng-if="paginationCtrl.totalItems > 0">
+                <strong>{{ paginationCtrl.offsetBegin }}</strong> - <strong>{{ paginationCtrl.offsetEnd }}</strong> de <strong>{{ paginationCtrl.totalItems }}</strong>
+            </div>
+
+            <div class="total no-record" ng-if="paginationCtrl.totalItems == 0">
+                <strong>{{ 'search.no_results' | trans }}</strong>
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <ul class="pagination pagination-sm pull-right" role="group" aria-label="pagination" ng-if="paginationCtrl.displayPagination">
+                <li><a href ng-if="paginationCtrl.page != 1" ng-click="paginationCtrl.setPage(paginationCtrl.page - 1)">« {{ 'paginator.previous' | trans }}</a></li>
+                <li ng-repeat="n in paginationCtrl.range(paginationCtrl.page) track by $index" ng-class="{'active': n == paginationCtrl.page}">
+                    <a href ng-if="n != '.'" ng-click="paginationCtrl.setPage(n)">{{ n }}</a>
+                    <span ng-if="n == '.'">&hellip;</span>
+                </li>
+                <li><a href ng-if="paginationCtrl.page != paginationCtrl.nbPages" ng-click="paginationCtrl.setPage(paginationCtrl.page + 1)">{{ 'paginator.next' | trans }} »</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
