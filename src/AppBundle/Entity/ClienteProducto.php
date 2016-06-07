@@ -64,9 +64,9 @@ class ClienteProducto
     private $obs;
 
     /**
-     * @var \Xproducto
+     * @var \Producto
      *
-     * @ORM\ManyToOne(targetEntity="Xproducto")
+     * @ORM\ManyToOne(targetEntity="Producto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="producto_id", referencedColumnName="id")
      * })
@@ -84,9 +84,9 @@ class ClienteProducto
     private $prodmarca;
 
     /**
-     * @var \Xmedida
+     * @var \Medida
      *
-     * @ORM\ManyToOne(targetEntity="Xmedida")
+     * @ORM\ManyToOne(targetEntity="Medida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="medida_id", referencedColumnName="id")
      * })
@@ -94,9 +94,9 @@ class ClienteProducto
     private $medida;
 
     /**
-     * @var \Xmedida
+     * @var \Medida
      *
-     * @ORM\ManyToOne(targetEntity="Xmedida")
+     * @ORM\ManyToOne(targetEntity="Medida")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="mmedida_id", referencedColumnName="id")
      * })
@@ -256,11 +256,11 @@ class ClienteProducto
     /**
      * Set producto
      *
-     * @param \AppBundle\Entity\Xproducto $producto
+     * @param \AppBundle\Entity\Producto $producto
      *
      * @return ClienteProducto
      */
-    public function setProducto(\AppBundle\Entity\Xproducto $producto = null)
+    public function setProducto(\AppBundle\Entity\Producto $producto = null)
     {
         $this->producto = $producto;
 
@@ -270,7 +270,7 @@ class ClienteProducto
     /**
      * Get producto
      *
-     * @return \AppBundle\Entity\Xproducto
+     * @return \AppBundle\Entity\Producto
      */
     public function getProducto()
     {
@@ -304,11 +304,11 @@ class ClienteProducto
     /**
      * Set medida
      *
-     * @param \AppBundle\Entity\Xmedida $medida
+     * @param \AppBundle\Entity\Medida $medida
      *
      * @return ClienteProducto
      */
-    public function setMedida(\AppBundle\Entity\Xmedida $medida = null)
+    public function setMedida(\AppBundle\Entity\Medida $medida = null)
     {
         $this->medida = $medida;
 
@@ -318,7 +318,7 @@ class ClienteProducto
     /**
      * Get medida
      *
-     * @return \AppBundle\Entity\Xmedida
+     * @return \AppBundle\Entity\Medida
      */
     public function getMedida()
     {
@@ -328,11 +328,11 @@ class ClienteProducto
     /**
      * Set mmedida
      *
-     * @param \AppBundle\Entity\Xmedida $mmedida
+     * @param \AppBundle\Entity\Medida $mmedida
      *
      * @return ClienteProducto
      */
-    public function setMmedida(\AppBundle\Entity\Xmedida $mmedida = null)
+    public function setMmedida(\AppBundle\Entity\Medida $mmedida = null)
     {
         $this->mmedida = $mmedida;
 
@@ -342,7 +342,7 @@ class ClienteProducto
     /**
      * Get mmedida
      *
-     * @return \AppBundle\Entity\Xmedida
+     * @return \AppBundle\Entity\Medida
      */
     public function getMmedida()
     {

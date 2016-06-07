@@ -17,7 +17,7 @@ class ProductoMarcaType extends AbstractType
         $builder
             ->add('nomb')
             ->add('producto', 'entity', array(
-                'class' => 'AppBundle:Xproducto',
+                'class' => 'AppBundle:Producto',
                 'property' => 'id',
             ))
         ;

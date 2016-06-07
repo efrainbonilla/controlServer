@@ -7,13 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Xproducto
+ * Producto
  *
  * @ORM\Table(name="_producto", options={"collate"="utf8_general_ci", "charset"="utf8"})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\XproductoRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Xproducto
+class Producto
 {
     /**
      * @var integer
@@ -89,7 +89,7 @@ class Xproducto
      *
      * @param string $nomb
      *
-     * @return Xproducto
+     * @return Producto
      */
     public function setNomb($nomb)
     {
@@ -113,7 +113,7 @@ class Xproducto
      *
      * @param \AppBundle\Entity\ProductoMarca $marca
      *
-     * @return Xproducto
+     * @return Producto
      */
     public function addMarca(\AppBundle\Entity\ProductoMarca $marca)
     {
@@ -148,7 +148,7 @@ class Xproducto
      *
      * @param \AppBundle\Entity\ProductoRubro $rubro
      *
-     * @return Xproducto
+     * @return Producto
      */
     public function addRubro(\AppBundle\Entity\ProductoRubro $rubro)
     {

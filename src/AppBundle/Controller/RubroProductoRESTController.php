@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Xmedida;
-use AppBundle\Form\XmedidaType;
+use AppBundle\Entity\RubroProducto;
+use AppBundle\Form\RubroProductoType;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -19,25 +19,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
- * Xmedida controller.
- * @RouteResource("Xmedida")
+ * RubroProducto controller.
+ * @RouteResource("RubroProducto")
  */
-class XmedidaRESTController extends VoryxController
+class RubroProductoRESTController extends VoryxController
 {
     /**
-     * Get a Xmedida entity
+     * Get a RubroProducto entity
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Xmedida $entity)
+    public function getAction(RubroProducto $entity)
     {
         return $entity;
     }
     /**
-     * Get all Xmedida entities.
+     * Get all RubroProducto entities.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -63,7 +63,7 @@ class XmedidaRESTController extends VoryxController
             $filters_operator = $paramFetcher->get('filters_operator');
 
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Xmedida');
+            $entity = $em->getRepository('AppBundle:RubroProducto');
             if (!empty($q)) {
                 $filters_ = array(
                     'nomb' => '',
@@ -91,7 +91,7 @@ class XmedidaRESTController extends VoryxController
         }
     }
     /**
-     * Create a Xmedida entity.
+     * Create a RubroProducto entity.
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -102,8 +102,8 @@ class XmedidaRESTController extends VoryxController
      */
     public function postAction(Request $request)
     {
-        $entity = new Xmedida();
-        $form = $this->createForm(get_class(new XmedidaType()), $entity, array("method" => $request->getMethod()));
+        $entity = new RubroProducto();
+        $form = $this->createForm(get_class(new RubroProductoType()), $entity, array("method" => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
 
@@ -118,7 +118,7 @@ class XmedidaRESTController extends VoryxController
         return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
     }
     /**
-     * Update a Xmedida entity.
+     * Update a RubroProducto entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -127,12 +127,12 @@ class XmedidaRESTController extends VoryxController
      *
      * @return Response
      */
-    public function putAction(Request $request, Xmedida $entity)
+    public function putAction(Request $request, RubroProducto $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(get_class(new XmedidaType()), $entity, array("method" => $request->getMethod()));
+            $form = $this->createForm(get_class(new RubroProductoType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             if ($form->isValid()) {
@@ -147,7 +147,7 @@ class XmedidaRESTController extends VoryxController
         }
     }
     /**
-     * Partial Update to a Xmedida entity.
+     * Partial Update to a RubroProducto entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -156,12 +156,12 @@ class XmedidaRESTController extends VoryxController
      *
      * @return Response
      */
-    public function patchAction(Request $request, Xmedida $entity)
+    public function patchAction(Request $request, RubroProducto $entity)
     {
         return $this->putAction($request, $entity);
     }
     /**
-     * Delete a Xmedida entity.
+     * Delete a RubroProducto entity.
      *
      * @View(statusCode=204)
      *
@@ -170,7 +170,7 @@ class XmedidaRESTController extends VoryxController
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Xmedida $entity)
+    public function deleteAction(Request $request, RubroProducto $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class XmagnitudType extends AbstractType
+class ProductoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,7 +16,6 @@ class XmagnitudType extends AbstractType
     {
         $builder
             ->add('nomb')
-            ->add('simb')
         ;
     }
 
@@ -27,7 +26,7 @@ class XmagnitudType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Xmagnitud'
+            'data_class' => 'AppBundle\Entity\Producto'
         ));
     }
 }

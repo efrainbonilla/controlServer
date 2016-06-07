@@ -2,10 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\ProductoMarca;
-use AppBundle\Entity\ProductoRubro;
-use AppBundle\Entity\Xproducto;
-use AppBundle\Form\XproductoType;
+use AppBundle\Entity\Medida;
+use AppBundle\Form\MedidaType;
+
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -16,28 +15,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
- * Xproducto controller.
- * @RouteResource("Xproducto")
+ * Medida controller.
+ * @RouteResource("Medida")
  */
-class XproductoRESTController extends VoryxController
+class MedidaRESTController extends VoryxController
 {
     /**
-     * Get a Xproducto entity
+     * Get a Medida entity
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Xproducto $entity)
+    public function getAction(Medida $entity)
     {
         return $entity;
     }
     /**
-     * Get all Xproducto entities.
+     * Get all Medida entities.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -63,7 +63,7 @@ class XproductoRESTController extends VoryxController
             $filters_operator = $paramFetcher->get('filters_operator');
 
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Xproducto');
+            $entity = $em->getRepository('AppBundle:Medida');
             if (!empty($q)) {
                 $filters_ = array(
                     'nomb' => '',
@@ -91,7 +91,7 @@ class XproductoRESTController extends VoryxController
         }
     }
     /**
-     * Create a Xproducto entity.
+     * Create a Medida entity.
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -102,10 +102,8 @@ class XproductoRESTController extends VoryxController
      */
     public function postAction(Request $request)
     {
-        $entity = new Xproducto();
-        $form = $this->createForm(get_class(new XproductoType()), $entity, array("method" => $request->getMethod()));
-        $this->productoRubroEntity($request, $entity);
-        $this->productoMarcaEntity($request, $entity);
+        $entity = new Medida();
+        $form = $this->createForm(get_class(new MedidaType()), $entity, array("method" => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
 
@@ -120,7 +118,7 @@ class XproductoRESTController extends VoryxController
         return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
     }
     /**
-     * Update a Xproducto entity.
+     * Update a Medida entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -129,19 +127,12 @@ class XproductoRESTController extends VoryxController
      *
      * @return Response
      */
-    public function putAction(Request $request, Xproducto $entity)
+    public function putAction(Request $request, Medida $entity)
     {
-        if (!$request->request->get('nomb')) {
-            $request->request->set('nomb', $entity->getNomb());
-        }
-
-        $this->productoRubroEntity($request, $entity);
-        $this->productoMarcaEntity($request, $entity);
-
         try {
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(new XproductoType(), $entity, array("method" => $request->getMethod()));
+            $form = $this->createForm(get_class(new MedidaType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             if ($form->isValid()) {
@@ -155,95 +146,8 @@ class XproductoRESTController extends VoryxController
             return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
-
-    public function productoRubroEntity(Request $request, Xproducto $entity)
-    {
-        if (is_array($request->request->get('rubro'))) {
-            $rubro = $request->request->get('rubro');
-            $em = $this->getDoctrine()->getManager();
-            $entityProductoRubro = $em->getRepository('AppBundle:ProductoRubro')->findBy(
-                array('producto' => $entity->getId())
-            );
-
-            $productoRubroIds = array();
-            foreach ($entityProductoRubro as $key => $enti) {
-                $rubroId = $enti->getRubro()->getId();
-                if (in_array($rubroId, $rubro)) {
-                    if (($key = array_search($rubroId, $rubro)) !== false) {
-                        unset($rubro[$key]);
-                        sort($rubro);
-                    }
-                } else {
-                    $productoRubroIds[] = $enti;
-                }
-            }
-
-            //delete entity
-            foreach ($productoRubroIds as $key => $value) {
-                $em->remove($value);
-            }
-
-            if ($productoRubroIds) {
-                $em->flush();
-            }
-
-            //add entity
-            foreach ($rubro as $key => $value) {
-                $entityRubro = $em->getRepository('AppBundle:Rubro')->find($value);
-                if ($entityRubro) {
-                    $entityProductoRubro = new ProductoRubro();
-                    $entityProductoRubro->setRubro($entityRubro);
-                    $entity->addRubro($entityProductoRubro);
-                }
-            }
-        }
-    }
-
-    public function productoMarcaEntity(Request $request, Xproducto $entity)
-    {
-        if (is_array($request->request->get('marca'))) {
-            $marca = $request->request->get('marca');
-            $em = $this->getDoctrine()->getManager();
-            $entityProductoMarca = $em->getRepository('AppBundle:ProductoMarca')->findBy(
-                array('producto' => $entity->getId())
-            );
-
-            $productoMarcaIds = array();
-            foreach ($entityProductoMarca as $key => $enti) {
-                $marcaId = $enti->getMarca()->getId();
-                if (in_array($marcaId, $marca)) {
-                    if (($key = array_search($marcaId, $marca)) !== false) {
-                        unset($marca[$key]);
-                        sort($marca);
-                    }
-                } else {
-                    $productoMarcaIds[] = $enti;
-                }
-            }
-
-            //delete entity
-            foreach ($productoMarcaIds as $key => $value) {
-                $em->remove($value);
-            }
-
-            if ($productoMarcaIds) {
-                $em->flush();
-            }
-
-            //add entity
-            foreach ($marca as $key => $value) {
-                $entityMarcaProducto = $em->getRepository('AppBundle:MarcaProducto')->find($value);
-                if ($entityMarcaProducto) {
-                    $entityProductoMarca = new ProductoMarca();
-                    $entityProductoMarca->setMarca($entityMarcaProducto);
-                    $entity->addMarca($entityProductoMarca);
-                }
-            }
-        }
-    }
-
     /**
-     * Partial Update to a Xproducto entity.
+     * Partial Update to a Medida entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -252,12 +156,12 @@ class XproductoRESTController extends VoryxController
      *
      * @return Response
      */
-    public function patchAction(Request $request, Xproducto $entity)
+    public function patchAction(Request $request, Medida $entity)
     {
         return $this->putAction($request, $entity);
     }
     /**
-     * Delete a Xproducto entity.
+     * Delete a Medida entity.
      *
      * @View(statusCode=204)
      *
@@ -266,7 +170,7 @@ class XproductoRESTController extends VoryxController
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Xproducto $entity)
+    public function deleteAction(Request $request, Medida $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();

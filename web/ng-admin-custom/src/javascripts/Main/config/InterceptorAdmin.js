@@ -88,6 +88,25 @@ define(function () {
 				response.data.tipo = tipo;
 			}
 
+			if (operation === 'get' && what === 'productos' && angular.isArray(data.marca)) {
+
+				response.data._marca = response.data.marca;
+				response.data._rubro = response.data.rubro;
+
+				var marca = [];
+				angular.forEach(response.data.marca, function(item) {
+					marca.push(item.marca.id);
+				});
+
+				var rubro = [];
+				angular.forEach(response.data.rubro, function(item) {
+					rubro.push(item.rubro.id);
+				});
+
+				response.data.marca = marca;
+				response.data.rubro = rubro;
+			}
+
 	        return data;
 	    });
 

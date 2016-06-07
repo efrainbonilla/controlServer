@@ -6,13 +6,13 @@ use AppBundle\Util\Utility;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Xmagnitud
+ * Medida
  *
- * @ORM\Table(name="_magnitud", options={"collate"="utf8_general_ci", "charset"="utf8"})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\XmagnitudRepository")
+ * @ORM\Table(name="_medida", uniqueConstraints={@ORM\UniqueConstraint(name="uniq_mag_med", columns={"magnitud_id", "nomb"})}, options={"collate"="utf8_general_ci", "charset"="utf8"})
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MedidaRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Xmagnitud
+class Medida
 {
     /**
      * @var integer
@@ -22,6 +22,16 @@ class Xmagnitud
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var \Magnitud
+     *
+     * @ORM\ManyToOne(targetEntity="Magnitud")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="magnitud_id", referencedColumnName="id")
+     * })
+     */
+    private $magnitud;
 
     /**
      * @var string
@@ -58,13 +68,6 @@ class Xmagnitud
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -79,7 +82,7 @@ class Xmagnitud
      *
      * @param string $nomb
      *
-     * @return Xmagnitud
+     * @return Medida
      */
     public function setNomb($nomb)
     {
@@ -103,7 +106,7 @@ class Xmagnitud
      *
      * @param string $simb
      *
-     * @return Xmagnitud
+     * @return Medida
      */
     public function setSimb($simb)
     {
@@ -120,5 +123,29 @@ class Xmagnitud
     public function getSimb()
     {
         return $this->simb;
+    }
+
+    /**
+     * Set magnitud
+     *
+     * @param \AppBundle\Entity\Magnitud $magnitud
+     *
+     * @return Medida
+     */
+    public function setMagnitud(\AppBundle\Entity\Magnitud $magnitud = null)
+    {
+        $this->magnitud = $magnitud;
+
+        return $this;
+    }
+
+    /**
+     * Get magnitud
+     *
+     * @return \AppBundle\Entity\Magnitud
+     */
+    public function getMagnitud()
+    {
+        return $this->magnitud;
     }
 }

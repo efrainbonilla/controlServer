@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * ProductoRubro
  *
- * @ORM\Table(name="_producto_rubro", options={"collate"="utf8_general_ci", "charset"="utf8"}, indexes={@ORM\Index(name="producto_id", columns={"producto_id"}), @ORM\Index(name="rubro_id", columns={"rubro_id"})})
+ * @ORM\Table(name="_producto_rubro", options={"collate"="utf8_general_ci", "charset"="utf8"}, indexes={@ORM\Index(name="producto_id", columns={"producto_id"}), @ORM\Index(name="rubroproducto_id", columns={"rubroproducto_id"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRubroRepository")
  */
 class ProductoRubro
@@ -22,9 +22,9 @@ class ProductoRubro
     private $id;
 
     /**
-     * @var \Xproducto
+     * @var \Producto
      *
-     * @ORM\ManyToOne(targetEntity="Xproducto")
+     * @ORM\ManyToOne(targetEntity="Producto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="producto_id", referencedColumnName="id")
      * })
@@ -32,11 +32,11 @@ class ProductoRubro
     private $producto;
 
     /**
-     * @var \Rubro
+     * @var \RubroProducto
      *
-     * @ORM\ManyToOne(targetEntity="Rubro")
+     * @ORM\ManyToOne(targetEntity="RubroProducto")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="rubro_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="rubroproducto_id", referencedColumnName="id")
      * })
      */
     private $rubro;
@@ -54,11 +54,11 @@ class ProductoRubro
     /**
      * Set producto
      *
-     * @param \AppBundle\Entity\Xproducto $producto
+     * @param \AppBundle\Entity\Producto $producto
      *
      * @return ProductoRubro
      */
-    public function setProducto(\AppBundle\Entity\Xproducto $producto = null)
+    public function setProducto(\AppBundle\Entity\Producto $producto = null)
     {
         $this->producto = $producto;
 
@@ -68,7 +68,7 @@ class ProductoRubro
     /**
      * Get producto
      *
-     * @return \AppBundle\Entity\Xproducto
+     * @return \AppBundle\Entity\Producto
      */
     public function getProducto()
     {
@@ -78,11 +78,11 @@ class ProductoRubro
     /**
      * Set rubro
      *
-     * @param \AppBundle\Entity\Rubro $rubro
+     * @param \AppBundle\Entity\RubroProducto $rubro
      *
      * @return ProductoRubro
      */
-    public function setRubro(\AppBundle\Entity\Rubro $rubro = null)
+    public function setRubro(\AppBundle\Entity\RubroProducto $rubro = null)
     {
         $this->rubro = $rubro;
 
@@ -92,7 +92,7 @@ class ProductoRubro
     /**
      * Get rubro
      *
-     * @return \AppBundle\Entity\Rubro
+     * @return \AppBundle\Entity\RubroProducto
      */
     public function getRubro()
     {

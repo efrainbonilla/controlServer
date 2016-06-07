@@ -3,6 +3,11 @@ App_MarcaProducto_api:
     type:   rest
     prefix:   /api
 
+App_RubroProducto_api:
+        resource: "@AppBundle/Controller/RubroProductoRESTController.php"
+        type:   rest
+        prefix:   /api
+
 App_ClienteProducto_api:
         resource: "@AppBundle/Controller/ClienteProductoRESTController.php"
         type:   rest
@@ -20,11 +25,6 @@ App_ProductoMarca_api:
 
 App_ProductoRubro_api:
         resource: "@AppBundle/Controller/ProductoRubroRESTController.php"
-        type:   rest
-        prefix:   /api
-
-App_Rubro_api:
-        resource: "@AppBundle/Controller/RubroRESTController.php"
         type:   rest
         prefix:   /api
 
@@ -53,18 +53,18 @@ App_VehiculoTransporte_api:
         type:   rest
         prefix:   /api
 
-App_Xmagnitud_api:
-        resource: "@AppBundle/Controller/XmagnitudRESTController.php"
+App_Magnitud_api:
+        resource: "@AppBundle/Controller/MagnitudRESTController.php"
         type:   rest
         prefix:   /api
 
-App_Xmedida_api:
-        resource: "@AppBundle/Controller/XmedidaRESTController.php"
+App_Medida_api:
+        resource: "@AppBundle/Controller/MedidaRESTController.php"
         type:   rest
         prefix:   /api
 
-App_Xproducto_api:
-        resource: "@AppBundle/Controller/XproductoRESTController.php"
+App_Producto_api:
+        resource: "@AppBundle/Controller/ProductoRESTController.php"
         type:   rest
         prefix:   /api
 

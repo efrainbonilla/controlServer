@@ -16,11 +16,11 @@ class ProductoRubroType extends AbstractType
     {
         $builder
             ->add('producto', 'entity', array(
-                'class' => 'AppBundle:Xproducto',
+                'class' => 'AppBundle:Producto',
                 'property' => 'id',
             ))
             ->add('rubro', 'entity', array(
-                'class' => 'AppBundle:Rubro',
+                'class' => 'AppBundle:RubroProducto',
                 'property' => 'id',
             ))
         ;

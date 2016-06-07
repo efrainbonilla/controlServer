@@ -168,13 +168,13 @@ class GuiaComercianteRESTController extends VoryxController
 
                 foreach ($valueSecond['producto'] as $keyThird => $valueThird) {
                     $entityClienteProducto = new ClienteProducto();
-                    $entityClienteProducto->setProducto($em->getRepository('AppBundle:Xproducto')->find($valueThird['prod']));
+                    $entityClienteProducto->setProducto($em->getRepository('AppBundle:Producto')->find($valueThird['prod']));
                     $entityClienteProducto->setProdmarca($em->getRepository('AppBundle:ProductoMarca')->find($valueThird['prodMarca']));
                     $entityClienteProducto->setPresUni($valueThird['presUni']);
                     $entityClienteProducto->setPresNum($valueThird['presNum']);
-                    $entityClienteProducto->setMedida($em->getRepository('AppBundle:Xmedida')->find($valueThird['presMed']));
+                    $entityClienteProducto->setMedida($em->getRepository('AppBundle:Medida')->find($valueThird['presMed']));
                     $entityClienteProducto->setPresCant($valueThird['presCant']);
-                    $entityClienteProducto->setMmedida($em->getRepository('AppBundle:Xmedida')->find($valueThird['presMmed']));
+                    $entityClienteProducto->setMmedida($em->getRepository('AppBundle:Medida')->find($valueThird['presMmed']));
                     $entityClienteProducto->setCompra($valueThird['precCompra']);
                     $entityClienteProducto->setVenta($valueThird['precVenta']);
                     $entityClienteProducto->setObs(isset($valueThird['obs'])?: null);

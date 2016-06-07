@@ -2,9 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Rubro;
-use AppBundle\Form\RubroType;
-
+use AppBundle\Entity\ProductoMarca;
+use AppBundle\Entity\ProductoRubro;
+use AppBundle\Entity\Producto;
+use AppBundle\Form\ProductoType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -15,29 +16,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
- * Rubro controller.
- * @RouteResource("Rubro")
+ * Producto controller.
+ * @RouteResource("Producto")
  */
-class RubroRESTController extends VoryxController
+class ProductoRESTController extends VoryxController
 {
     /**
-     * Get a Rubro entity
+     * Get a Producto entity
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Rubro $entity)
+    public function getAction(Producto $entity)
     {
         return $entity;
     }
     /**
-     * Get all Rubro entities.
+     * Get all Producto entities.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -63,7 +63,7 @@ class RubroRESTController extends VoryxController
             $filters_operator = $paramFetcher->get('filters_operator');
 
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AppBundle:Rubro');
+            $entity = $em->getRepository('AppBundle:Producto');
             if (!empty($q)) {
                 $filters_ = array(
                     'nomb' => '',
@@ -91,7 +91,7 @@ class RubroRESTController extends VoryxController
         }
     }
     /**
-     * Create a Rubro entity.
+     * Create a Producto entity.
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -102,8 +102,10 @@ class RubroRESTController extends VoryxController
      */
     public function postAction(Request $request)
     {
-        $entity = new Rubro();
-        $form = $this->createForm(get_class(new RubroType()), $entity, array("method" => $request->getMethod()));
+        $entity = new Producto();
+        $form = $this->createForm(get_class(new ProductoType()), $entity, array("method" => $request->getMethod()));
+        $this->productoRubroEntity($request, $entity);
+        $this->productoMarcaEntity($request, $entity);
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
 
@@ -118,7 +120,7 @@ class RubroRESTController extends VoryxController
         return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
     }
     /**
-     * Update a Rubro entity.
+     * Update a Producto entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -127,12 +129,19 @@ class RubroRESTController extends VoryxController
      *
      * @return Response
      */
-    public function putAction(Request $request, Rubro $entity)
+    public function putAction(Request $request, Producto $entity)
     {
+        if (!$request->request->get('nomb')) {
+            $request->request->set('nomb', $entity->getNomb());
+        }
+
+        $this->productoRubroEntity($request, $entity);
+        $this->productoMarcaEntity($request, $entity);
+
         try {
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(get_class(new RubroType()), $entity, array("method" => $request->getMethod()));
+            $form = $this->createForm(new ProductoType(), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             if ($form->isValid()) {
@@ -146,8 +155,95 @@ class RubroRESTController extends VoryxController
             return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function productoRubroEntity(Request $request, Producto $entity)
+    {
+        if (is_array($request->request->get('rubro'))) {
+            $rubro = $request->request->get('rubro');
+            $em = $this->getDoctrine()->getManager();
+            $entityProductoRubro = $em->getRepository('AppBundle:ProductoRubro')->findBy(
+                array('producto' => $entity->getId())
+            );
+
+            $productoRubroIds = array();
+            foreach ($entityProductoRubro as $key => $enti) {
+                $rubroId = $enti->getRubro()->getId();
+                if (in_array($rubroId, $rubro)) {
+                    if (($key = array_search($rubroId, $rubro)) !== false) {
+                        unset($rubro[$key]);
+                        sort($rubro);
+                    }
+                } else {
+                    $productoRubroIds[] = $enti;
+                }
+            }
+
+            //delete entity
+            foreach ($productoRubroIds as $key => $value) {
+                $em->remove($value);
+            }
+
+            if ($productoRubroIds) {
+                $em->flush();
+            }
+
+            //add entity
+            foreach ($rubro as $key => $value) {
+                $entityRubro = $em->getRepository('AppBundle:RubroProducto')->find($value);
+                if ($entityRubro) {
+                    $entityProductoRubro = new ProductoRubro();
+                    $entityProductoRubro->setRubro($entityRubro);
+                    $entity->addRubro($entityProductoRubro);
+                }
+            }
+        }
+    }
+
+    public function productoMarcaEntity(Request $request, Producto $entity)
+    {
+        if (is_array($request->request->get('marca'))) {
+            $marca = $request->request->get('marca');
+            $em = $this->getDoctrine()->getManager();
+            $entityProductoMarca = $em->getRepository('AppBundle:ProductoMarca')->findBy(
+                array('producto' => $entity->getId())
+            );
+
+            $productoMarcaIds = array();
+            foreach ($entityProductoMarca as $key => $enti) {
+                $marcaId = $enti->getMarca()->getId();
+                if (in_array($marcaId, $marca)) {
+                    if (($key = array_search($marcaId, $marca)) !== false) {
+                        unset($marca[$key]);
+                        sort($marca);
+                    }
+                } else {
+                    $productoMarcaIds[] = $enti;
+                }
+            }
+
+            //delete entity
+            foreach ($productoMarcaIds as $key => $value) {
+                $em->remove($value);
+            }
+
+            if ($productoMarcaIds) {
+                $em->flush();
+            }
+
+            //add entity
+            foreach ($marca as $key => $value) {
+                $entityMarcaProducto = $em->getRepository('AppBundle:MarcaProducto')->find($value);
+                if ($entityMarcaProducto) {
+                    $entityProductoMarca = new ProductoMarca();
+                    $entityProductoMarca->setMarca($entityMarcaProducto);
+                    $entity->addMarca($entityProductoMarca);
+                }
+            }
+        }
+    }
+
     /**
-     * Partial Update to a Rubro entity.
+     * Partial Update to a Producto entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -156,12 +252,12 @@ class RubroRESTController extends VoryxController
      *
      * @return Response
      */
-    public function patchAction(Request $request, Rubro $entity)
+    public function patchAction(Request $request, Producto $entity)
     {
         return $this->putAction($request, $entity);
     }
     /**
-     * Delete a Rubro entity.
+     * Delete a Producto entity.
      *
      * @View(statusCode=204)
      *
@@ -170,7 +266,7 @@ class RubroRESTController extends VoryxController
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Rubro $entity)
+    public function deleteAction(Request $request, Producto $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();

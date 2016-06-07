@@ -19,21 +19,32 @@ define(function() {
 	function ConfigAdmin(
 		NgAdminConfigurationProvider,
 		appConfig,
+
 		UserAdminProvider,
 		AjusteAdminProvider,
 		AjusteReporteAdminProvider,
-
 		PaisAdminProvider,
 		EstadoAdminProvider,
 		MunicipioAdminProvider,
 		ParroquiaAdminProvider,
 		ZonaAdminProvider,
 
+		MagnitudAdminProvider,
+		MedidaAdminProvider,
+
 		PersonaAdminProvider,
 		MercantilAdminProvider,
 		TipoMercantilAdminProvider,
 		GuiacomercianteAdminProvider,
-		ProductoAdminProvider) {
+		VehiculoTransporteAdminProvider,
+
+		ProductoAdminProvider,
+		MarcaProductoAdminProvider,
+		RubroProductoAdminProvider,
+
+		VehiculoMarcaAdminProvider,
+		VehiculoModeloAdminProvider,
+		VehiculoAdminProvider) {
 
 
 		var nga = NgAdminConfigurationProvider;
@@ -54,11 +65,22 @@ define(function() {
 			.addEntity(ParroquiaAdminProvider.$get())
 			.addEntity(ZonaAdminProvider.$get())
 
+			.addEntity(MagnitudAdminProvider.$get())
+			.addEntity(MedidaAdminProvider.$get())
+
 			.addEntity(PersonaAdminProvider.$get())
 			.addEntity(MercantilAdminProvider.$get())
 			.addEntity(TipoMercantilAdminProvider.$get())
 			.addEntity(GuiacomercianteAdminProvider.$get())
+			.addEntity(VehiculoTransporteAdminProvider.$get())
+
 			.addEntity(ProductoAdminProvider.$get())
+			.addEntity(MarcaProductoAdminProvider.$get())
+			.addEntity(RubroProductoAdminProvider.$get())
+
+			.addEntity(VehiculoMarcaAdminProvider.$get())
+			.addEntity(VehiculoModeloAdminProvider.$get())
+			.addEntity(VehiculoAdminProvider.$get())
 		;
 
 		admin.menu(nga.menu()
@@ -77,15 +99,26 @@ define(function() {
 				.addChild(nga.menu(MunicipioAdminProvider.$get()))
 				.addChild(nga.menu(ParroquiaAdminProvider.$get()))
 				.addChild(nga.menu(ZonaAdminProvider.$get()))
+				.addChild(nga.menu(MagnitudAdminProvider.$get()))
+				.addChild(nga.menu(MedidaAdminProvider.$get()))
 			)
 			.addChild(nga.menu().title('Control Importación').icon('<span class="fa fa-key"> </span>')
 				.addChild(nga.menu(PersonaAdminProvider.$get()))
 				.addChild(nga.menu(TipoMercantilAdminProvider.$get()).title('Tipo Entidades'))
 				.addChild(nga.menu(MercantilAdminProvider.$get()).title('Entidades'))
 				.addChild(nga.menu(GuiacomercianteAdminProvider.$get()).title('Guía de traslado'))
-				.addChild(nga.menu(ProductoAdminProvider.$get()).title('Productos'))
+				.addChild(nga.menu(VehiculoTransporteAdminProvider.$get()).title('Transporte'))
 				.addChild(nga.menu().title('Reportes').icon('<span class="fa fa-user"> </span>').link('/controlimportacion/reportes'))
-
+			)
+			.addChild(nga.menu().title('Control Importación Producto').icon('<span class="fa fa-key"> </span>')
+				.addChild(nga.menu(ProductoAdminProvider.$get()).title('Productos'))
+				.addChild(nga.menu(MarcaProductoAdminProvider.$get()).title('Marcas de Productos'))
+				.addChild(nga.menu(RubroProductoAdminProvider.$get()).title('Rubros de Productos'))
+			)
+			.addChild(nga.menu().title('Control Importación Transporte').icon('<span class="fa fa-key"> </span>')
+				.addChild(nga.menu(VehiculoAdminProvider.$get()).title('Vehículos'))
+				.addChild(nga.menu(VehiculoMarcaAdminProvider.$get()).title('Marca de Vehículo'))
+				.addChild(nga.menu(VehiculoModeloAdminProvider.$get()).title('Modelo de Marca de Vehículo'))
 			)
 		);
 
@@ -147,11 +180,22 @@ define(function() {
 		'ParroquiaAdminProvider',
 		'ZonaAdminProvider',
 
+		'MagnitudAdminProvider',
+		'MedidaAdminProvider',
+
 		'PersonaAdminProvider',
 		'MercantilAdminProvider',
 		'TipoMercantilAdminProvider',
 		'GuiacomercianteAdminProvider',
-		'ProductoAdminProvider'
+		'VehiculoTransporteAdminProvider',
+
+		'ProductoAdminProvider',
+		'MarcaProductoAdminProvider',
+		'RubroProductoAdminProvider',
+
+		'VehiculoMarcaAdminProvider',
+		'VehiculoModeloAdminProvider',
+		'VehiculoAdminProvider',
 	];
 
 	return ConfigAdmin;

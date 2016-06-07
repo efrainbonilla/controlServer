@@ -3,7 +3,7 @@ export default class BetweenController {
 		this.$rootScope = $rootScope;
 		this.$scope = $scope;
 
-		this.$scope.model = {};
+		/*this.$scope.model = {};*/
 
 		this.$scope.dateOptions = {
 			formatYear: 'yy',

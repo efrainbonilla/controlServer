@@ -1,4 +1,4 @@
-define(function(require) {
+define(function() {
 	'use strict';
 
 	function ProductoAdmin($provide, NgAdminConfigurationProvider) {
@@ -7,7 +7,7 @@ define(function(require) {
 
 			var util = UtilityService;
 
-			var producto = nga.entity('xproductos')
+			var producto = nga.entity('productos')
 				.identifier(nga.field('id'))
 				.label('Productos');
 
@@ -15,8 +15,8 @@ define(function(require) {
 				.title('Lista de productos')
 				.infinitePagination(false)
 				.fields([
-					nga.field('id').label('prod_id'),
-					nga.field('nomb').label('prod_nomb'),
+					nga.field('id').label('ID'),
+					nga.field('nomb').label('Nombre'),
 
 					nga.field('rubro', 'template')
 						.label('Rubros')
@@ -45,20 +45,88 @@ define(function(require) {
 			producto.creationView()
 				.title('Crear nuevo producto')
 				.fields([
-					nga.field('nomb').label('prod_nomb'),
+					nga.field('nomb').label('Nombre'),
+
+					nga.field('marca', 'choices')
+					.label('Marca')
+					.validation({
+						required: true
+					})
+					.attributes({
+						'placeholder': 'Seleccione marca(s).'
+					})
+					.choices(function(entry, scope) {
+
+						util.choiceMarcaProductos()(entry, scope);
+
+						$rootScope.$broadcast('choice:marcaproductos:get');
+
+						return [];
+					}),
+
+					nga.field('rubro', 'choices')
+					.label('Rubro')
+					.validation({
+						required: true
+					})
+					.attributes({
+						'placeholder': 'Seleccione rubro(s).'
+					})
+					.choices(function(entry, scope) {
+
+						util.choiceRubroProductos()(entry, scope);
+
+						$rootScope.$broadcast('choice:rubroproductos:get');
+
+						return [];
+					}),
 				]);
 
 			producto.editionView()
 				.title('Actualizar producto #{{ ::entry.identifierValue }}')
 				.fields([
-					nga.field('nomb').label('prod_nomb'),
+					nga.field('nomb').label('Nombre'),
+
+					nga.field('marca', 'choices')
+					.label('Marca')
+					.validation({
+						required: true
+					})
+					.attributes({
+						'placeholder': 'Seleccione marca(s).'
+					})
+					.choices(function(entry, scope) {
+						console.log(entry.values);
+						util.choiceMarcaProductos()(entry, scope);
+
+						$rootScope.$broadcast('choice:marcaproductos:get');
+
+						return [];
+					}),
+
+					nga.field('rubro', 'choices')
+					.label('Rubro')
+					.validation({
+						required: true
+					})
+					.attributes({
+						'placeholder': 'Seleccione rubro(s).'
+					})
+					.choices(function(entry, scope) {
+
+						util.choiceRubroProductos()(entry, scope);
+
+						$rootScope.$broadcast('choice:rubroproductos:get');
+
+						return [];
+					}),
 				]);
 
 			producto.showView()
 				.title('Detalle producto #{{ ::entry.identifierValue }}')
 				.fields([
-					nga.field('id').label('prod_id'),
-					nga.field('nomb').label('prod_nomb'),
+					nga.field('id').label('ID'),
+					nga.field('nomb').label('Nombre'),
 				]);
 
 			return producto;

@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class XmedidaType extends AbstractType
+class MagnitudType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +16,7 @@ class XmedidaType extends AbstractType
     {
         $builder
             ->add('nomb')
-            ->add('simb', 'text', array('data' => '', 'empty_data' => '.'))
-            ->add('magnitud', 'entity', array(
-                'class' => 'AppBundle:Xmagnitud',
-                'property' => 'id',
-            ))
+            ->add('simb')
         ;
     }
 
@@ -31,7 +27,7 @@ class XmedidaType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Xmedida'
+            'data_class' => 'AppBundle\Entity\Magnitud'
         ));
     }
 }

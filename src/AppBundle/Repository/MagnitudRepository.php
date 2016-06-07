@@ -2,7 +2,7 @@
 
 namespace AppBundle\Repository;
 
-class XproductoRepository extends CustomEntityRepository
+class MagnitudRepository extends CustomEntityRepository
 {
     public function getNbResults()
     {

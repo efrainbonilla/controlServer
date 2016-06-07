@@ -4,20 +4,20 @@ namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Ajuste;
 use AppBundle\Entity\AjusteReporte;
-use AppBundle\Entity\Pais;
 use AppBundle\Entity\Estado;
+use AppBundle\Entity\Magnitud;
+use AppBundle\Entity\MarcaProducto;
+use AppBundle\Entity\Medida;
 use AppBundle\Entity\Municipio;
+use AppBundle\Entity\Pais;
 use AppBundle\Entity\Parroquia;
-use AppBundle\Entity\Zona;
-
+use AppBundle\Entity\Producto;
 use AppBundle\Entity\ProductoMarca;
 use AppBundle\Entity\ProductoRubro;
-use AppBundle\Entity\Rubro;
+use AppBundle\Entity\RubroProducto;
 use AppBundle\Entity\TipoMercantil;
 use AppBundle\Entity\User;
-use AppBundle\Entity\Xmagnitud;
-use AppBundle\Entity\Xmedida;
-use AppBundle\Entity\Xproducto;
+use AppBundle\Entity\Zona;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -62,11 +62,14 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
 
         $this->loadTipoMercantil($manager);
 
-        $this->loadRubro($manager);
-        $this->loadXproducto($manager);
+
+        $this->loadMarcaProducto($manager);
+        $this->loadRubroProducto($manager);
+
+        $this->loadProducto($manager);
         $this->loadProductoRubro($manager);
-        $this->loadXmagnitud($manager);
-        $this->loadXmedida($manager);
+        $this->loadMagnitud($manager);
+        $this->loadMedida($manager);
 
     }
 
@@ -5544,26 +5547,7 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
-    public function loadRubro(ObjectManager $manager)
-    {
-        $data = array(
-            //array('id','nomb'),
-            array(null,'ALIMENTOS'),
-            array(null,'HIGIENE'),
-        );
-
-        foreach ($data as $data) {
-            $entityRubro = new Rubro();
-            /*$entityRubro->setId($data[0]);*/
-            $entityRubro->setNomb($data[1]);
-
-            $manager->persist($entityRubro);
-        }
-
-        $manager->flush();
-    }
-
-    public function loadXproducto(ObjectManager $manager)
+    public function loadProducto(ObjectManager $manager)
     {
         $data = array(
             //array('id','nomb'),
@@ -5606,7 +5590,7 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
         );
 
         foreach ($data as $data) {
-            $entityRubro = new Xproducto();
+            $entityRubro = new Producto();
             /*$entityRubro->setId($data[0]);*/
             $entityRubro->setNomb($data[1]);
             $manager->persist($entityRubro);
@@ -5624,12 +5608,12 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
 
         $em = $this->container->get('doctrine')->getEntityManager('default');
 
-        foreach ($data as $data) {
+        foreach ($data as $item) {
             $entityProductoRubro = new ProductoRubro();
-            /*$entityProductoRubro->setId($data[0]);*/
-            $entityProducto = $em->getRepository('AppBundle:Xproducto')->find($data[1]);
+            /*$entityProductoRubro->setId($item[0]);*/
+            $entityProducto = $em->getRepository('AppBundle:Producto')->find($item[1]);
             $entityProductoRubro->setProducto($entityProducto);
-            $entityRubro = $em->getRepository('AppBundle:Rubro')->find($data[2]);
+            $entityRubro = $em->getRepository('AppBundle:RubroProducto')->find($item[2]);
             $entityProductoRubro->setRubro($entityRubro);
             $manager->persist($entityProductoRubro);
         }
@@ -5637,8 +5621,45 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+    public function loadMarcaProducto(ObjectManager $manager)
+    {
+        $data = array(
+            //array('id', 'nomb'),
+            array(null,'SIN MARCA'),
+        );
 
-    public function loadXmagnitud(ObjectManager $manager)
+
+        foreach ($data as $item) {
+            $entityMarcaProducto = new MarcaProducto();
+            /*$entityMarcaProducto->setId($item[0]);*/
+            $entityMarcaProducto->setNomb($item[1]);
+            $manager->persist($entityMarcaProducto);
+        }
+
+        $manager->flush();
+    }
+
+    public function loadRubroProducto(ObjectManager $manager)
+    {
+        $data = array(
+            //array('id', 'nomb'),
+            array(null,'ALIMENTOS'),
+            array(null,'BEBIDAS'),
+            array(null,'HIGIENE'),
+        );
+
+        foreach ($data as $item) {
+            $entityRubroProducto = new RubroProducto();
+            /*$entityRubroProducto->setId($item[0]);*/
+            $entityRubroProducto->setNomb($item[1]);
+            $manager->persist($entityRubroProducto);
+        }
+
+        $manager->flush();
+    }
+
+
+    public function loadMagnitud(ObjectManager $manager)
     {
         $magnitud = array(
             /*array('id','nomb'),*/
@@ -5651,7 +5672,7 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
         $em = $this->container->get('doctrine')->getEntityManager('default');
 
         foreach ($magnitud as $data) {
-            $entityMagnitud = new Xmagnitud();
+            $entityMagnitud = new Magnitud();
             /*$entityMagnitud->setId($data[0]);*/
             $entityMagnitud->setNomb($data[1]);
             $entityMagnitud->setSimb('');
@@ -5661,7 +5682,7 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
-    public function loadXmedida(ObjectManager $manager)
+    public function loadMedida(ObjectManager $manager)
     {
         $medida = array(
             /*array('id','nomb', 'simb','magnitud_id'),*/
@@ -5704,10 +5725,10 @@ class LoadFitures implements FixtureInterface, ContainerAwareInterface
         $em = $this->container->get('doctrine')->getEntityManager('default');
 
         foreach ($medida as $data) {
-            $entityMedida = new Xmedida();
+            $entityMedida = new Medida();
             $entityMedida->setNomb($data[1]);
             $entityMedida->setSimb($data[2]);
-            $entityMagnitud = $em->getRepository('AppBundle:Xmagnitud')->find($data[3]);
+            $entityMagnitud = $em->getRepository('AppBundle:Magnitud')->find($data[3]);
             $entityMedida->setMagnitud($entityMagnitud);
             $manager->persist($entityMedida);
         }

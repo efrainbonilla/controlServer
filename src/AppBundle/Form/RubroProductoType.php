@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RubroType extends AbstractType
+class RubroProductoType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -26,7 +26,7 @@ class RubroType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Rubro'
+            'data_class' => 'AppBundle\Entity\RubroProducto'
         ));
     }
 }

@@ -1,13 +1,13 @@
 <form name="productoMarca.form" ng-submit="productoMarca.submitEdition($event)">
     <fieldset ng-disabled="isSaving">
     	<div class="modal-header align-center">
-            <h3 ng-if="formName=='xproductos'" class="modal-title">Registrar producto</h3>
+            <h3 ng-if="formName=='productos'" class="modal-title">Registrar producto</h3>
             <h3 ng-if="formName=='productomarcas'" class="modal-title">Registrar marca de producto</h3>
-    	    <h3 ng-if="formName=='xmedidas'" class="modal-title">Registrar medida</h3>
+    	    <h3 ng-if="formName=='medidas'" class="modal-title">Registrar medida</h3>
     	</div>
     	<div class="modal-body">
             <div>
-                <div ng-if="formName=='xproductos'" class="row">
+                <div ng-if="formName=='productos'" class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <label class="control-label" for="producto">Producto *</label>
@@ -19,12 +19,12 @@
                         <div class="input-group">
                             <ui-select ui-select-required multiple ng-model="model.rubro" ng-required="true" required="required" id="rubro" name="rubro">
                                 <ui-select-match placeholder="Selecione a que rubros pertenece el producto.">{{ $item.label }}</ui-select-match>
-                                <ui-select-choices repeat="item.value as item in rubros | filter: {label: $select.search}">
+                                <ui-select-choices repeat="item.value as item in rubroproductos | filter: {label: $select.search}">
                                     {{ item.label }}
                                 </ui-select-choices>
                             </ui-select>
                             <span class="input-group-btn">
-                                <button type="button" ng-click="open($event, 'rubros')" class="btn btn-default">
+                                <button type="button" ng-click="open($event, 'rubroproductos')" class="btn btn-default">
                                     <span class="glyphicon glyphicon-plus-sign"></span>
                                 </button>
                             </span>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div ng-if="formName=='xmedidas'" class="row">
+                <div ng-if="formName=='medidas'" class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="form-group">
                             <label class="control-label" for="magnitud">Magnitud *</label>

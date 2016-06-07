@@ -2,7 +2,7 @@
 
 namespace AppBundle\Repository;
 
-class XmedidaRepository extends CustomEntityRepository
+class ProductoRepository extends CustomEntityRepository
 {
     public function getNbResults()
     {

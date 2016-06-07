@@ -63,7 +63,7 @@ export default class ReportesControlImportacionController {
 
 		this.$scope.comerciantes = [];
 		this.$scope.productos = [];
-		this.$scope.rubros = [];
+		this.$scope.rubroproductos = [];
 
 		this.$scope.delChoices = this.util.choiceDel()();
 		this.$scope.monthsChoices = this.util.choiceMonth()();
@@ -90,7 +90,7 @@ export default class ReportesControlImportacionController {
 			label: 'FORMULARIO DE REPORTES DINAMICOS CONFIGURABLES DESDE BASE DE DATOS',
 			value: 'a'
 		}, {
-			label: 'FORMULARIO DE REPORTES BASADOS EN RANGOS DE FECHA y FILTROS POR EMPRESA',
+			label: 'FORMULARIO DE REPORTES BASADOS EN RANGOS DE FECHA Y FILTROS POR EMPRESA',
 			value: 'b'
 		}];
 		this.$scope.option.a = false;
@@ -194,7 +194,7 @@ export default class ReportesControlImportacionController {
 
 	getProductos() {
 		this.util
-			.apiXproducto()
+			.apiProducto()
 				.then((response) => {
 					this.$scope.productos = this.util.dataPrepare(response.data.originalElement, [{
 						label: 'nomb'
@@ -206,9 +206,9 @@ export default class ReportesControlImportacionController {
 
 	getRubros() {
 		this.util
-			.apiRubro()
+			.apiRubroProducto()
 				.then((response) => {
-					this.$scope.rubros = this.util.dataPrepare(response.data.originalElement, [{
+					this.$scope.rubroproductos = this.util.dataPrepare(response.data.originalElement, [{
 						label: 'nomb'
 					}, {
 						value: 'id'

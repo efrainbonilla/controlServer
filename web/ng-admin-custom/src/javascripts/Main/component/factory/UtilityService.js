@@ -715,6 +715,358 @@ define(function() {
 				};
 			},
 
+			choiceMarcaProductos: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var marcaproductos = [];
+					var marca = entry.values['marca'];
+					entry.values['marca'] = [];
+
+					var dMarcaProductos = $rootScope.$on('choice:marcaproductos:get', getMarcaProductos);
+					var dresetMarcaProductos = $rootScope.$on('choice:marcaproductos:reset', resetMarcaProductos);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return marcaproductos;
+
+					function getMarcaProductos(e, $item, $model) {
+						util.apiMarcaProducto($item, $model).then((response) => {
+							marcaproductos = util.dataPrepare(response.data.originalElement, [{
+									label: 'nomb'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: marcaproductos
+							});
+
+							entry.values['marca'] = marca;
+						});
+					}
+
+					function resetMarcaProductos() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dMarcaProductos();
+						dresetMarcaProductos();
+					}
+				};
+			},
+
+			choiceRubroProductos: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var rubroproductos = [];
+					var rubro = entry.values['rubro'];
+					entry.values['rubro'] = [];
+
+					var dRubroProductos = $rootScope.$on('choice:rubroproductos:get', getRubroProductos);
+					var dresetRubroProductos = $rootScope.$on('choice:rubroproductos:reset', resetRubroProductos);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return rubroproductos;
+
+					function getRubroProductos(e, $item, $model) {
+						util.apiRubroProducto($item, $model).then((response) => {
+							rubroproductos = util.dataPrepare(response.data.originalElement, [{
+									label: 'nomb'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: rubroproductos
+							});
+
+							entry.values['rubro'] = rubro;
+						});
+					}
+
+					function resetRubroProductos() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dRubroProductos();
+						dresetRubroProductos();
+					}
+				};
+			},
+
+			choiceConductor: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var conductors = [];
+					var conductor = entry.values['conductor.id'];
+					entry.values['conductor'] = '';
+
+					var dConductors = $rootScope.$on('choice:conductors:get', getConductors);
+					var dresetConductors = $rootScope.$on('choice:conductors:reset', resetConductors);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return conductors;
+
+					function getConductors(e, $item, $model) {
+						util.apiPersona($item, $model).then((response) => {
+							conductors = util.dataPrepare(response.data.originalElement, [{
+									label: 'nac_cedu_nomb_apell'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: conductors
+							});
+
+							entry.values['conductor'] = conductor;
+						});
+					}
+
+					function resetConductors() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dConductors();
+						dresetConductors();
+					}
+				};
+			},
+
+			choiceVehiculo: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var vehiculos = [];
+					var vehiculo = entry.values['vehiculo.id'];
+					entry.values['vehiculo'] = '';
+
+					var dVehiculos = $rootScope.$on('choice:vehiculos:get', getVehiculos);
+					var dresetVehiculos = $rootScope.$on('choice:vehiculos:reset', resetVehiculos);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return vehiculos;
+
+					function getVehiculos(e, $item, $model) {
+						util.apiVehiculo($item, $model).then((response) => {
+							vehiculos = util.dataPrepare(response.data.originalElement, [{
+									label: 'placa_marca_modelo_anio_color'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: vehiculos
+							});
+
+							entry.values['vehiculo'] = vehiculo;
+						});
+					}
+
+					function resetVehiculos() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dVehiculos();
+						dresetVehiculos();
+					}
+				};
+			},
+
+			choiceMarcaVehiculo: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var marcavehiculos = [];
+					var marca = entry.values['marca.id'];
+					entry.values['marca'] = '';
+
+					var dMarcaVehiculos = $rootScope.$on('choice:marcavehiculos:get', getMarcaVehiculos);
+					var dresetMarcaVehiculos = $rootScope.$on('choice:marcavehiculos:reset', resetMarcaVehiculos);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return marcavehiculos;
+
+					function getMarcaVehiculos(e, $item, $model) {
+						util.apiVehiculoMarca($item, $model).then((response) => {
+							marcavehiculos = util.dataPrepare(response.data.originalElement, [{
+									label: 'nomb'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: marcavehiculos
+							});
+
+							entry.values['marca'] = marca;
+						});
+					}
+
+					function resetMarcaVehiculos() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dMarcaVehiculos();
+						dresetMarcaVehiculos();
+					}
+				};
+			},
+
+			choiceModeloVehiculo: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var modelovehiculos = [];
+					var modelo = entry.values['modelo.id'];
+					entry.values['modelo'] = '';
+
+					var dModeloVehiculos = $rootScope.$on('choice:modelovehiculos:get', getModeloVehiculos);
+					var dresetModeloVehiculos = $rootScope.$on('choice:modelovehiculos:reset', resetModeloVehiculos);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return modelovehiculos;
+
+					function getModeloVehiculos(e, $item, $model) {
+						util.apiVehiculoModelo($item, $model).then((response) => {
+							modelovehiculos = util.dataPrepare(response.data.originalElement, [{
+									label: 'nomb'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: modelovehiculos
+							});
+
+							entry.values['modelo'] = modelo;
+						});
+					}
+
+					function resetModeloVehiculos() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dModeloVehiculos();
+						dresetModeloVehiculos();
+					}
+				};
+			},
+
+			choiceMagnitud: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var magnituds = [];
+					var magnitud = entry.values['magnitud.id'];
+					entry.values['magnitud'] = '';
+
+					var dMagnituds = $rootScope.$on('choice:magnituds:get', getMagnituds);
+					var dresetMagnituds = $rootScope.$on('choice:magnituds:reset', resetMagnituds);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return magnituds;
+
+					function getMagnituds(e, $item, $model) {
+						util.apiMagnitud($item, $model).then((response) => {
+							magnituds = util.dataPrepare(response.data.originalElement, [{
+									label: 'nomb'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: magnituds
+							});
+
+							entry.values['magnitud'] = magnitud;
+						});
+					}
+
+					function resetMagnituds() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dMagnituds();
+						dresetMagnituds();
+					}
+				};
+			},
+
+			choiceMedida: function() {
+				var util = this;
+				return function(entry, scope) {
+
+					var medidas = [];
+					var medida = entry.values['medida.id'];
+					entry.values['medida'] = '';
+
+					var dMedidas = $rootScope.$on('choice:medidas:get', getMedidas);
+					var dresetMedidas = $rootScope.$on('choice:medidas:reset', resetMedidas);
+
+					scope.$on('$destroy', destroyEvent);
+
+					return medidas;
+
+					function getMedidas(e, $item, $model) {
+						util.apiVehiculoModelo($item, $model).then((response) => {
+							medidas = util.dataPrepare(response.data.originalElement, [{
+									label: 'nomb'
+								}, {
+									value: 'id'
+								}]);
+
+							scope.$broadcast('choices:update', {
+								choices: medidas
+							});
+
+							entry.values['medida'] = medida;
+						});
+					}
+
+					function resetMedidas() {
+						scope.$broadcast('choices:update', {
+							choices: []
+						});
+					}
+
+					function destroyEvent() {
+						dMedidas();
+						dresetMedidas();
+					}
+				};
+			},
+
 			choiceTipoMercantil: function() {
 				var util = this;
 				return function(entry, scope) {
@@ -813,27 +1165,27 @@ define(function() {
 				return RestWrapper.getList({}, 'mercantilclientes', '/api/mercantils/tipo?codi=cli');
 			},
 
-			apiXproducto: function($item, $model, $limit) {
-				return RestWrapper.getList({}, 'xproductos', '/api/xproductos?limit=' + ($limit || '500000'));
+			apiProducto: function($item, $model, $limit) {
+				return RestWrapper.getList({}, 'productos', '/api/productos?limit=' + ($limit || '500000'));
 			},
 
 			apiProductoMarca: function($item, $model, $limit) {
 				return RestWrapper.getList({}, 'productomarcas', '/api/productomarcas?filters[producto]=' + $model + '&limit=' + ($limit || '5000'));
 			},
 
-			apiRubro: function($item, $model, $limit) {
-				return RestWrapper.getList({}, 'rubros', '/api/rubros?limit=' + ($limit || '500000'));
+			apiRubroProducto: function($item, $model, $limit) {
+				return RestWrapper.getList({}, 'rubroproductos', '/api/rubroproductos?limit=' + ($limit || '500000'));
 			},
 
 			apiMarcaProducto: function($item, $model, $limit) {
 				return RestWrapper.getList({}, 'marcaproductos', '/api/marcaproductos?limit=' + ($limit || '500000'));
 			},
 
-			apiXmedida: function($item, $model, $limit) {
-				return RestWrapper.getList({}, 'xmedidas', '/api/xmedidas?limit=' + ($limit || '5000'));
+			apiMedida: function($item, $model, $limit) {
+				return RestWrapper.getList({}, 'medidas', '/api/medidas?limit=' + ($limit || '5000'));
 			},
-			apiXmagnitud: function($item, $model, $limit) {
-				return RestWrapper.getList({}, 'xmagnituds', '/api/xmagnituds?limit=' + ($limit || '5000'));
+			apiMagnitud: function($item, $model, $limit) {
+				return RestWrapper.getList({}, 'magnituds', '/api/magnituds?limit=' + ($limit || '5000'));
 			},
 
 			apiVehiculo: function($item, $model, $limit) {

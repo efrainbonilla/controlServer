@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class XproductoType extends AbstractType
+class MedidaType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,6 +16,11 @@ class XproductoType extends AbstractType
     {
         $builder
             ->add('nomb')
+            ->add('simb', 'text', array('data' => '', 'empty_data' => '.'))
+            ->add('magnitud', 'entity', array(
+                'class' => 'AppBundle:Magnitud',
+                'property' => 'id',
+            ))
         ;
     }
 
@@ -26,7 +31,7 @@ class XproductoType extends AbstractType
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'data_class' => 'AppBundle\Entity\Xproducto'
+            'data_class' => 'AppBundle\Entity\Medida'
         ));
     }
 }

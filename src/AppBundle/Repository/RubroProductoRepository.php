@@ -2,7 +2,7 @@
 
 namespace AppBundle\Repository;
 
-class RubroRepository extends CustomEntityRepository
+class RubroProductoRepository extends CustomEntityRepository
 {
     public function getNbResults()
     {

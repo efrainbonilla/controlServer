@@ -48,7 +48,18 @@ MainModule.config(require('./component/factory/PersonaAdmin'));
 MainModule.config(require('./component/factory/MercantilAdmin'));
 MainModule.config(require('./component/factory/TipoMercantilAdmin'));
 MainModule.config(require('./component/factory/GuiacomercianteAdmin'));
+MainModule.config(require('./component/factory/VehiculoTransporteAdmin'));
+
 MainModule.config(require('./component/factory/ProductoAdmin'));
+MainModule.config(require('./component/factory/MarcaProductoAdmin'));
+MainModule.config(require('./component/factory/RubroProductoAdmin'));
+
+MainModule.config(require('./component/factory/VehiculoMarcaAdmin'));
+MainModule.config(require('./component/factory/VehiculoModeloAdmin'));
+MainModule.config(require('./component/factory/VehiculoAdmin'));
+
+MainModule.config(require('./component/factory/MagnitudAdmin'));
+MainModule.config(require('./component/factory/MedidaAdmin'));
 
 MainModule.config(require('./config/InterceptorAdmin'));
 MainModule.config(require('./config/ConfigAdmin'));

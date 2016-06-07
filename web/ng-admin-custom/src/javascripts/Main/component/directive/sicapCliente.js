@@ -14,7 +14,7 @@ class RubroCreateModalController {
 		this.rest = RestWrapper;
 		this.ctrlParent = ctrlParent;
 
-		this.$scope.rubros = [];
+		this.$scope.rubroproductos = [];
 
 		this.$scope.model = {};
 		this.$scope.isSaving = false;
@@ -23,17 +23,17 @@ class RubroCreateModalController {
 
 		this.$scope.close = this.close.bind(this);
 
-		this.getRubros();
+		this.getRubroProductos();
 		this.getMarcaProductos();
 
 		this.$scope.$on('$destroy', this.destroy.bind(this));
 	}
 
-	getRubros($item, $model) {
+	getRubroProductos($item, $model) {
 		this.util
-			.apiRubro($item, $model)
+			.apiRubroProducto($item, $model)
 			.then((response) => {
-				this.$scope.rubros = this.util.dataPrepare(response.data.originalElement, [{
+				this.$scope.rubroproductos = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
 				}, {
 					value: 'id'
@@ -55,8 +55,8 @@ class RubroCreateModalController {
 
 	refresh(entity, apiName) {
 		switch (apiName) {
-			case "rubros":
-				this.ctrlParent.getRubros();
+			case "rubroproductos":
+				this.ctrlParent.getRubroProductos();
 				break;
 			case "marcaproductos":
 				this.ctrlParent.getMarcaProductos();
@@ -68,7 +68,7 @@ class RubroCreateModalController {
 
 	submitEdition($event) {
 		switch (this.$scope.formName) {
-			case "rubros":
+			case "rubroproductos":
 			case "marcaproductos":
 				this.submit($event, this.$scope.formName);
 				break;
@@ -147,9 +147,9 @@ class ProductoMarcaCreateModalController {
 		this.rest = RestWrapper;
 		this.ctrlParent = ctrlParent;
 
-		this.$scope.rubros = [];
 		this.$scope.productos = [];
 		this.$scope.productomarcas = [];
+		this.$scope.rubroproductos = [];
 		this.$scope.marcaproductos = [];
 		this.$scope._marcaproductos = [];
 
@@ -172,12 +172,12 @@ class ProductoMarcaCreateModalController {
 
 	active() {
 		switch (this.$scope.formName) {
-			case "xmedidas":
+			case "medidas":
 				this.getMagnituds();
 				break;
-			case "xproductos":
+			case "productos":
 				this.getProductos();
-				this.getRubros();
+				this.getRubroProductos();
 
 				break;
 			case "productomarcas":
@@ -196,7 +196,7 @@ class ProductoMarcaCreateModalController {
 
 	getProductos($item, $model) {
 		this.util
-			.apiXproducto($item, $model)
+			.apiProducto($item, $model)
 			.then((response) => {
 				this.$scope.productos = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
@@ -243,14 +243,14 @@ class ProductoMarcaCreateModalController {
 		this.$scope._marcaproductos = data;
 	}
 
-	getRubros($item, $model) {
+	getRubroProductos($item, $model) {
 		let rubro = this.$scope.model.rubro;
 		this.$scope.model.rubro = [];
 
 		this.util
-			.apiRubro($item, $model)
+			.apiRubroProducto($item, $model)
 			.then((response) => {
-				this.$scope.rubros = this.util.dataPrepare(response.data.originalElement, [{
+				this.$scope.rubroproductos = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
 				}, {
 					value: 'id'
@@ -293,7 +293,7 @@ class ProductoMarcaCreateModalController {
 
 	getMagnituds($item, $model) {
 		this.util
-			.apiXmagnitud($item, $model)
+			.apiMagnitud($item, $model)
 			.then((response) => {
 				this.$scope.magnituds = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
@@ -305,7 +305,7 @@ class ProductoMarcaCreateModalController {
 
 	getMedidas($item, $model) {
 		this.util
-			.apiXmedida($item, $model)
+			.apiMedida($item, $model)
 			.then((response) => {
 				this.$scope.medidas = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
@@ -332,17 +332,17 @@ class ProductoMarcaCreateModalController {
 	refresh(entity, apiName, id) {
 		if (id) {
 			switch (apiName) {
-				case "xproductos":
+				case "productos":
 					break;
 				default:
 					break;
 			}
 		} else {
 			switch (apiName) {
-				case "xproductos":
+				case "productos":
 					this.ctrlParent.getProductos();
 					break;
-				case "xmedidas":
+				case "medidas":
 					this.ctrlParent.getMedidas();
 					break;
 				default:
@@ -353,14 +353,14 @@ class ProductoMarcaCreateModalController {
 
 	submitEdition($event) {
 		switch (this.$scope.formName) {
-			case "xproductos":
+			case "productos":
 				this.submit($event, this.$scope.formName);
 				break;
 			case "productomarcas":
 				this.$scope.model.marca = this.$rootScope._.union(this.$scope.marca, this.$scope.model._marca);
-				this.submit($event, 'xproductos', this.$scope.model.producto);
+				this.submit($event, 'productos', this.$scope.model.producto);
 				break;
-			case "xmedidas":
+			case "medidas":
 				this.submit($event, this.$scope.formName);
 				break;
 			default:
@@ -544,7 +544,7 @@ class ClienteController {
 
 	getProductos() {
 		this.util
-			.apiXproducto()
+			.apiProducto()
 			.then((response) => {
 				this.$scope.productos = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
@@ -556,7 +556,7 @@ class ClienteController {
 
 	getMedidas() {
 		this.util
-			.apiXmedida()
+			.apiMedida()
 			.then((response) => {
 				this.$scope.medidas = this.util.dataPrepare(response.data.originalElement, [{
 					label: 'nomb'
@@ -607,7 +607,6 @@ class ClienteController {
 	getConductor($event, $item, $model) {
 		$event.preventDefault();
 
-        console.log($item, $model, "getConductor");
         this.getConductors($item, $model);
 	}
 
@@ -1029,14 +1028,14 @@ export default function sicapClienteDirective() {
 		                                        </li>
 		                                         <li role="separator" class="divider"></li>
 		                                        <li>
-		                                        	<a href="#" ng-click="open($event, 'xproductos')">Registrar producto</a>
+		                                        	<a href="#" ng-click="open($event, 'productos')">Registrar producto</a>
 		                                        </li>
 		                                        <li>
 		                                        	<a href="#" ng-click="open($event, 'productomarcas')">Registrar marca de producto</a>
 		                                        </li>
 		                                         <li role="separator" class="divider"></li>
 		                                         <li>
-		                                        	<a href="#" ng-click="open($event, 'xmedidas')">Registrar medida</a>
+		                                        	<a href="#" ng-click="open($event, 'medidas')">Registrar medida</a>
 		                                        </li>
 		                                    </ul>
 		                                </div>

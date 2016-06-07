@@ -23,9 +23,9 @@ class ProductoMarca
     private $id;
 
     /**
-     * @var \Xproducto
+     * @var \Producto
      *
-     * @ORM\ManyToOne(targetEntity="Xproducto")
+     * @ORM\ManyToOne(targetEntity="Producto")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="producto_id", referencedColumnName="id")
      * })
@@ -55,11 +55,11 @@ class ProductoMarca
     /**
      * Set producto
      *
-     * @param \AppBundle\Entity\Xproducto $producto
+     * @param \AppBundle\Entity\Producto $producto
      *
      * @return ProductoMarca
      */
-    public function setProducto(\AppBundle\Entity\Xproducto $producto = null)
+    public function setProducto(\AppBundle\Entity\Producto $producto = null)
     {
         $this->producto = $producto;
 
@@ -69,7 +69,7 @@ class ProductoMarca
     /**
      * Get producto
      *
-     * @return \AppBundle\Entity\Xproducto
+     * @return \AppBundle\Entity\Producto
      */
     public function getProducto()
     {

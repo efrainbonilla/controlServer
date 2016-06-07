@@ -6,13 +6,13 @@ use AppBundle\Util\Utility;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Rubro
+ * RubroProducto
  *
  * @ORM\Table(name="_rubro", options={"collate"="utf8_general_ci", "charset"="utf8"})
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RubroRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RubroProductoRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Rubro
+class RubroProducto
 {
     /**
      * @var integer
@@ -65,7 +65,7 @@ class Rubro
      *
      * @param integer $nomb
      *
-     * @return Rubro
+     * @return RubroProducto
      */
     public function setNomb($nomb)
     {

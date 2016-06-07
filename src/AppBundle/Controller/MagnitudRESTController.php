@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Xmagnitud;
-use AppBundle\Form\XmagnitudType;
+use AppBundle\Entity\Magnitud;
+use AppBundle\Form\MagnitudType;
 
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -19,25 +19,25 @@ use Symfony\Component\HttpFoundation\Response;
 use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
- * Xmagnitud controller.
- * @RouteResource("Xmagnitud")
+ * Magnitud controller.
+ * @RouteResource("Magnitud")
  */
-class XmagnitudRESTController extends VoryxController
+class MagnitudRESTController extends VoryxController
 {
     /**
-     * Get a Xmagnitud entity
+     * Get a Magnitud entity
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
      * @return Response
      *
      */
-    public function getAction(Xmagnitud $entity)
+    public function getAction(Magnitud $entity)
     {
         return $entity;
     }
     /**
-     * Get all Xmagnitud entities.
+     * Get all Magnitud entities.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -63,8 +63,8 @@ class XmagnitudRESTController extends VoryxController
             $filters_operator = $paramFetcher->get('filters_operator');
 
             $em = $this->getDoctrine()->getManager();
-            $entities = $em->getRepository('AppBundle:Xmagnitud')->findBy($filters, $order_by, $limit, $offset);
-            $entity = $em->getRepository('AppBundle:Xmagnitud');
+            $entities = $em->getRepository('AppBundle:Magnitud')->findBy($filters, $order_by, $limit, $offset);
+            $entity = $em->getRepository('AppBundle:Magnitud');
             if (!empty($q)) {
                 $filters_ = array(
                     'nomb' => '',
@@ -92,7 +92,7 @@ class XmagnitudRESTController extends VoryxController
         }
     }
     /**
-     * Create a Xmagnitud entity.
+     * Create a Magnitud entity.
      *
      * @View(statusCode=201, serializerEnableMaxDepthChecks=true)
      *
@@ -103,8 +103,8 @@ class XmagnitudRESTController extends VoryxController
      */
     public function postAction(Request $request)
     {
-        $entity = new Xmagnitud();
-        $form = $this->createForm(get_class(new XmagnitudType()), $entity, array("method" => $request->getMethod()));
+        $entity = new Magnitud();
+        $form = $this->createForm(get_class(new MagnitudType()), $entity, array("method" => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
 
@@ -119,7 +119,7 @@ class XmagnitudRESTController extends VoryxController
         return FOSView::create(array('errors' => $form->getErrors()), Codes::HTTP_INTERNAL_SERVER_ERROR);
     }
     /**
-     * Update a Xmagnitud entity.
+     * Update a Magnitud entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -128,12 +128,12 @@ class XmagnitudRESTController extends VoryxController
      *
      * @return Response
      */
-    public function putAction(Request $request, Xmagnitud $entity)
+    public function putAction(Request $request, Magnitud $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(get_class(new XmagnitudType()), $entity, array("method" => $request->getMethod()));
+            $form = $this->createForm(get_class(new MagnitudType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             if ($form->isValid()) {
@@ -148,7 +148,7 @@ class XmagnitudRESTController extends VoryxController
         }
     }
     /**
-     * Partial Update to a Xmagnitud entity.
+     * Partial Update to a Magnitud entity.
      *
      * @View(serializerEnableMaxDepthChecks=true)
      *
@@ -157,12 +157,12 @@ class XmagnitudRESTController extends VoryxController
      *
      * @return Response
      */
-    public function patchAction(Request $request, Xmagnitud $entity)
+    public function patchAction(Request $request, Magnitud $entity)
     {
         return $this->putAction($request, $entity);
     }
     /**
-     * Delete a Xmagnitud entity.
+     * Delete a Magnitud entity.
      *
      * @View(statusCode=204)
      *
@@ -171,7 +171,7 @@ class XmagnitudRESTController extends VoryxController
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Xmagnitud $entity)
+    public function deleteAction(Request $request, Magnitud $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();

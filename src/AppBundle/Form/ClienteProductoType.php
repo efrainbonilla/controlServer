@@ -21,7 +21,7 @@ class ClienteProductoType extends AbstractType
             ->add('compra')
             ->add('venta')
             ->add('producto', 'entity', array(
-                'class' => 'AppBundle:Xproducto',
+                'class' => 'AppBundle:Producto',
                 'property' => 'id',
             ))
             ->add('prodmarca', 'entity', array(
@@ -30,7 +30,7 @@ class ClienteProductoType extends AbstractType
             ))
             ->add('medida')
             ->add('mmedida', 'entity', array(
-                'class' => 'AppBundle:Xmedida',
+                'class' => 'AppBundle:Medida',
                 'property' => 'id',
             ))
             ->add('cliente', 'entity', array(
