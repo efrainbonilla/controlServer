@@ -1114,13 +1114,13 @@ export default function sicapClienteDirective() {
 		                                    </div>
 	                                    </td>
 	                                    <td>
-	                                    	<input type="text" name="prec_compra" ng-model="entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].prec_compra" class="form-control" ng-required="true" required="required" placeholder="Ingrese." autocomplete="off" data-toggle="tooltip" tooltip-placement="bottom-left"  tooltip-trigger="focus" tooltip="{{entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].prec_compra | currency: '$'}} .">
+	                                    	<input type="text" name="prec_compra" ng-model="entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].prec_compra" class="form-control" placeholder="Ingrese." autocomplete="off" data-toggle="tooltip" tooltip-placement="bottom-left"  tooltip-trigger="focus" tooltip="{{entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].prec_compra | currency: '$'}} .">
 	                                    </td>
 	                                    <td>
 	                                    	<input type="text" name="prec_venta" ng-model="entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].prec_venta" class="form-control" ng-required="true" required="required" placeholder="Ingrese." autocomplete="off"  data-toggle="tooltip" tooltip-placement="bottom-left" tooltip-trigger="focus" tooltip="{{entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].prec_venta | currency: 'Bs.F'}}.">
 	                                    </td>
 	                                    <td>
-	                                    	<input type="text" name="prec_venta" ng-model="entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].obs" class="form-control" placeholder="Opcional." autocomplete="off">
+	                                    	<input type="text" name="obs" ng-model="entry.values[keyNameFirst][keyVehiculo][keyNameSecond][keyCliente][keyNameThird][keyProducto].obs" class="form-control" placeholder="Opcional." autocomplete="off">
 	                                    </td>
 	                                    <td>
 	                                    	<button type="button" ng-click="removeProducto($event, keyVehiculo, keyCliente, keyProducto)" class="btn btn-default btn-xs pull-right">

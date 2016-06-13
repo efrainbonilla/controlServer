@@ -33,7 +33,7 @@ class MercantilDireccion
     /**
      * @var string
      *
-     * @ORM\Column(name="pto_ref", type="string", length=100, nullable=false)
+     * @ORM\Column(name="pto_ref", type="string", length=100, nullable=true)
      */
     private $ptoRef;
 

@@ -175,7 +175,7 @@ class GuiaComercianteRESTController extends VoryxController
                     $entityClienteProducto->setMedida($em->getRepository('AppBundle:Medida')->find($valueThird['presMed']));
                     $entityClienteProducto->setPresCant($valueThird['presCant']);
                     $entityClienteProducto->setMmedida($em->getRepository('AppBundle:Medida')->find($valueThird['presMmed']));
-                    $entityClienteProducto->setCompra($valueThird['precCompra']);
+                    $entityClienteProducto->setCompra(isset($valueThird['obs'])?: null);
                     $entityClienteProducto->setVenta($valueThird['precVenta']);
                     $entityClienteProducto->setObs(isset($valueThird['obs'])?: null);
                     $entityTranporteCliente->addProducto($entityClienteProducto);

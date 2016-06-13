@@ -45,7 +45,7 @@ class ClienteProducto
     /**
      * @var float
      *
-     * @ORM\Column(name="compra", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="compra", type="float", precision=10, scale=0, nullable=true)
      */
     private $compra;
 

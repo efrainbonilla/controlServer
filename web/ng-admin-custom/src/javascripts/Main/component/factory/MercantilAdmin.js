@@ -131,8 +131,8 @@ define(function(require) {
 					nga.field('direccion.pto_ref')
 					.label('pto_ref')
 					.validation({
-						required: true,
-						minlength: 4,
+						required: false,
+						minlength: 2,
 						maxlength: 100
 					}),
 

@@ -107,7 +107,7 @@ class GridController {
 
         let entity = form.entity,
             view = form.view,
-            route = !entity.editionView().enabled ? 'show' : 'edit',
+            route =  'show',
             restEntry = form.$scope.entry.transformToRest(view.fields());
 
         form.progression.start();
