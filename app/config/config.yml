@@ -17,6 +17,7 @@ parameters:
     pass_phrase: ThisTokenIsNotSoSecretChangeItPlease
     token_ttl: 86400
     database_driver:   pdo_mysql
+    webapp_title:   "CONTROL IMPORTACIÓN"
 
 framework:
     # Supported favorite IDE. values are 'textmate', 'macvim', 'emacs' and 'sublime'

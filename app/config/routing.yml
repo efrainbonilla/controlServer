@@ -98,11 +98,6 @@ App_Persona_api:
     type:   rest
     prefix:   /api
 
-app_utility_api:
-    resource: "@AppBundle/Controller/UtilityRESTController.php"
-    type:   rest
-    prefix:   /api
-
 app_zona_api:
     resource: "@AppBundle/Controller/ZonaRESTController.php"
     type:   rest
@@ -130,6 +125,11 @@ app_pais_api:
 
 app_user_api:
     resource: "@AppBundle/Controller/UserRESTController.php"
+    type:   rest
+    prefix:   /api
+
+app_utility_api:
+    resource: "@AppBundle/Controller/UtilityRESTController.php"
     type:   rest
     prefix:   /api
 

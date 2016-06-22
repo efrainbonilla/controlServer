@@ -23,6 +23,7 @@ define(function() {
 		UserAdminProvider,
 		AjusteAdminProvider,
 		AjusteReporteAdminProvider,
+
 		PaisAdminProvider,
 		EstadoAdminProvider,
 		MunicipioAdminProvider,
@@ -46,13 +47,11 @@ define(function() {
 		VehiculoModeloAdminProvider,
 		VehiculoAdminProvider) {
 
-
 		var nga = NgAdminConfigurationProvider;
 
 		var admin = NgAdminConfigurationProvider
 			.application(appConfig.webapp_title)
 			.baseApiUrl(baseApiUrl);
-
 
 		admin
 			.addEntity(UserAdminProvider.$get())
@@ -94,11 +93,13 @@ define(function() {
 				.addChild(nga.menu(AjusteAdminProvider.$get()).icon('<span class="fa fa-gears"> </span>'))
 				.addChild(nga.menu(AjusteReporteAdminProvider.$get()))
 				.addChild(nga.menu(UserAdminProvider.$get()).icon('<span class="fa fa-users"> </span>'))
+
 				.addChild(nga.menu(PaisAdminProvider.$get()))
 				.addChild(nga.menu(EstadoAdminProvider.$get()))
 				.addChild(nga.menu(MunicipioAdminProvider.$get()))
 				.addChild(nga.menu(ParroquiaAdminProvider.$get()))
 				.addChild(nga.menu(ZonaAdminProvider.$get()))
+
 				.addChild(nga.menu(MagnitudAdminProvider.$get()))
 				.addChild(nga.menu(MedidaAdminProvider.$get()))
 			)

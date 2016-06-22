@@ -262,7 +262,7 @@ function routing($stateProvider, $urlRouterProvider) {
 	});
 
 
-	$stateProvider.state('guiacomclis_reports', {
+	$stateProvider.state('controlimportacion_reports', {
 		parent: 'main',
 		url: '/controlimportacion/reportes',
 		controller: 'ReportesControlImportacionController',

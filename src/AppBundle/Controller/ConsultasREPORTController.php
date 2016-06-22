@@ -69,39 +69,4 @@ class ConsultasREPORTController extends ReportController
 
         return $this->outputFile($file, $format);
     }
-
-    /**
-     * @param  ParamFetcherInterface $paramFetcher
-     * @param  Request               $request
-     * @return Response
-     */
-    public function comercioReport(ParamFetcherInterface $paramFetcher, Request $request)
-    {
-        $report = $paramFetcher->get('report');
-        $format = $paramFetcher->get('format');
-        $param = $paramFetcher->get('param');
-
-        $this->initialize();
-
-        if (count($param)) {
-            $this->setParameters(
-                array_merge(
-                    array(
-                        'URI_WORKSPACE' => "\"" . dirname(realpath($this->jrxmlDir .'/' . $report . '.jasper')) . "\"" ,
-                        'URI_LOGO_LEFT' => "\"" . realpath($this->jrxmlDir .'/logo-left.png') . "\"" ,
-                        'URI_LOGO_RIGHT' => "\"" . realpath($this->jrxmlDir .'/logo-right.png') . "\""
-                    ),
-                    $param
-                )
-            );
-        }
-
-        $this->setFormat(array($format));
-
-        $this->jasperProccess($report . '.jasper');
-
-        $file = $this->reportDir . '/' . $this->outputFilename . '.' . $format;
-
-        return $this->outputFile($file, $format);
-    }
 }

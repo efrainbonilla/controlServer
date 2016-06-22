@@ -24,7 +24,7 @@ class DefaultController extends Controller
 
         return $this->render('default/app.html.twig', array(
             'config' => array_merge(array(
-                'webapp_' => '...',
+                'webapp_title' => '...',
             ), $entity)
         ));
     }

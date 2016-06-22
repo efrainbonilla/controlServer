@@ -20,7 +20,6 @@ MainModule.controller('ChangePasswordController', require('./component/controlle
 MainModule.controller('ResettingController', require('./component/controller/ResettingController'));
 MainModule.controller('ResettingResetController', require('./component/controller/ResettingResetController'));
 
-
 MainModule.controller('ReportesControlImportacionController', require('./component/controller/ReportesControlImportacionController'));
 MainModule.controller('BetweenController', require('./component/controller/BetweenController'));
 
@@ -70,7 +69,3 @@ MainModule.provider('UserService', require('./component/service/UserService'));
 MainModule.run(require('./run/initGlobal'));
 MainModule.run(require('./run/LoaderToken'));
 MainModule.run(require('./run/initMoment'));
-
-/*MainModule.config(function($tooltipProvider) {
-  $tooltipProvider.setTriggers({'focus':'blur mouseleave'});
-});*/
